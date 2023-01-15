@@ -1,4 +1,4 @@
-import { loadHeader, loadPage, showMessage } from "./index.js";
+import { loadHeader, loadHomepage, loadPage, showMessage } from "./index.js";
 
 const socket = io();
 
@@ -6,8 +6,12 @@ socket.on("loadpage", (page) => {
     loadPage(page);
 });
 
-socket.on("loadheader", (isLogged) => {
-    loadHeader(isLogged)
+socket.on("load-homepage", ({user, chats}) => {
+    loadHomepage("homepage", user, chats);
+});
+
+socket.on("loadheader", (user) => {
+    loadHeader(user);
 });
 
 socket.on("message", (message) => {
@@ -20,4 +24,12 @@ export function emitLogin(email, password) {
 
 export function emitRegister(nickname, email, password) {
     socket.emit("register", nickname, email, password);
+}
+
+export function emitNewChat(email) {
+    socket.emit("new-chat", email);
+}
+
+export function emitLoadHomepage(email) {
+    socket.emit("load-homepage-with-data", email);
 }

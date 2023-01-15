@@ -32,7 +32,32 @@ export const pages = {
         </form>
     `,
     "index": `
-        <button class="btn btn-info" id="login">Log in</button>
-        <button class="btn btn-info" id="register">Register</button>
+        <h1>Welcome to ZipZop!</h1>
+        <h2>Speak privately with anyone, anytime and anywhere!</h2>
+        <div>
+            <h3>You can create an account if you're new here</h3>
+            <button class="btn btn-warning" id="register">Register</button>
+
+            <h3 class="mt-3">Or log in if you own an account</h3>
+            <button class="btn btn-success" id="login">Log in</button>
+        </div>
+    `,
+    "homepage": `
+        <h1 id="greet-user"></h1>
+        <h2>Your chats</h2>
+        <button id="start-chat" class="btn btn-dark">Start new chat</button>
+        <ul class="chats">
+
+        </ul>
+    `,
+    "new-chat": `
+        <h1>Start chat</h1>
+        <form class="form">
+            <div>
+                <label for="email" class="form-label">Email:</label>
+                <input autofocus autocomplete="off" class="form-control" type="email" name="email" id="email" placeholder="name@domain.com">
+            </div>
+            <input type="submit" value="Start chat" class="btn btn-primary form__submit">
+        </form>
     `
 };

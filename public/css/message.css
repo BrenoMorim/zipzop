@@ -1,6 +1,6 @@
 .message-container {
     z-index: 3;
-    top: 1.5rem;
+    bottom: 50vh;
     right: 1.5rem;
     position: absolute;
     border-radius: 1.5rem;
@@ -13,11 +13,11 @@
 }
 
 .message-container--error {
-    background-color: #05063B;
-    color: #A5B0FF;
+    background-color: var(--red);
+    color: var(--white);
 }
 
 .message-container--success {
-    background-color: #A5B0FF;
-    color: #05063B; 
+    background-color: var(--lightblue);
+    color: var(--black);
 }

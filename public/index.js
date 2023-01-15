@@ -7,9 +7,14 @@ export function loadPage(page) {
     scripts[page]();
 }
 
-export function loadHeader(isLogged) {
-    if (isLogged) {
-        scripts["header-logged"]();
+export function loadHomepage(page, user, chats) {
+    document.querySelector("main").innerHTML = pages[page];
+    scripts[page]({user, chats});
+}
+
+export function loadHeader(user = {}) {
+    if (user?.email != undefined) {
+        scripts["header-logged"](user);
     } else {
         scripts["header"]();
     }

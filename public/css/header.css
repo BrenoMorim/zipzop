@@ -2,12 +2,21 @@
     flex-direction: row;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
     column-gap: 5vh;
 }
 
 .header {
     padding: 2rem 5rem;
+    justify-content: space-between;
+}
+
+.nav {
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.header__text {
+    margin: 0;
 }
 
 .logo {

@@ -5,7 +5,7 @@ export function createUser(nickname, email, password) {
     const hash = hashPassword(password);
 
     if (getUser(email) != undefined) {
-        return "This email address is already being used";
+        return `The email ${email} is already being used`;
     }
 
     db.prepare("INSERT INTO people (nickname, email, hash) VALUES (?, ?, ?);").run(nickname, email, hash);
