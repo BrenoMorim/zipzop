@@ -1,0 +1,23 @@
+{
+  "name": "zipzop",
+  "version": "1.0.0",
+  "description": "My final project for CS50",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon ./src/app.js"
+  },
+  "author": "BrenoMorim",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.2.2",
+    "bcrypt": "^5.1.0",
+    "better-sqlite3": "^8.0.1",
+    "body-parser": "^1.20.1",
+    "express": "^4.18.2",
+    "socket.io": "^4.5.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}

@@ -1,0 +1,25 @@
+body {
+    width: 100vw;
+    min-height: 100vh;
+}
+
+.form, .container {
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    padding: 5rem;
+    align-items: center;
+    row-gap: 2rem;
+}
+
+.form {
+    align-items: baseline;
+    padding: 2rem;
+    row-gap: 2rem;
+}
+
+.form__submit {
+    align-self: center;
+}
