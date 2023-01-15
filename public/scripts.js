@@ -20,5 +20,31 @@ export const scripts = {
             event.preventDefault();
             emitRegister(form.nickname.value, form.email.value, form.password.value);
         });
+    },
+    "header": () => {
+        const header = document.querySelector(".header");
+        header.innerHTML = `
+            <img class="logo" src="./assets/logo.png" alt="ZipZop Logo">
+            <nav class="nav">
+                <button id="nav-login" class="btn btn-info">Login</button>
+                <button id="nav-register" class="btn btn-info">Register</button>
+            </nav>
+        `;
+        document.querySelector("#nav-login").addEventListener("click", () => loadPage("login"));
+        document.querySelector("#nav-register").addEventListener("click", () => loadPage("register"));
+    },
+    "header-logged": () => {
+        const header = document.querySelector(".header");
+        header.innerHTML = `
+            <img class="logo" src="./assets/logo.png" alt="ZipZop Logo">
+            <nav class="nav">
+                <button id="nav-chats" class="btn btn-info">Chats</button>
+                <button id="nav-profile" class="btn btn-info">My profile</button>
+                <button id="nav-logout" class="btn btn-info">Log out</button>
+            </nav>
+        `;
+        document.querySelector("#nav-chats").addEventListener("click", () => loadPage("chats"));
+        document.querySelector("#nav-profile").addEventListener("click", () => loadPage("profile"));
+        document.querySelector("#nav-logout").addEventListener("click", () => {});
     }
 };

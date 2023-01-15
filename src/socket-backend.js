@@ -5,21 +5,28 @@ export default function socketBackend(io) {
     io.on("connection", (socket) => {
         
         socket.emit("loadpage", "index");
+        socket.emit("loadheader", false);
 
         socket.on("login", (email, password) => {
             const success = verifyLogin(email, password);
             if (success) {
-                socket.emit("login-success", email);
+                socket.emit("loadheader", true);
+                socket.emit("message", "success", "Logged in successfully");
+                socket.join(email);
             } else {
-                socket.emit("login-fail", email);
+                // TODO
+                socket.emit("message", "error", "Failed to login, please check your email and password");
             }
         });
         
         socket.on("register", (nickname, email, password) => {
             const errorMessage = createUser(nickname, email, password);
-
             if (errorMessage) {
-                socket.emit("error-message", errorMessage);
+                socket.emit("message", "error", errorMessage);
+            } else {
+                socket.emit("loadheader", true)
+                socket.join(email);
+                socket.emit("message", "success", "Registered successfully");
             }
         });
 

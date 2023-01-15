@@ -1,3 +1,11 @@
+:root {
+    --white: #EEEEEE;
+    --black: #05063B;
+    --lightblue: #A5B0FF;
+    --blue: #4D51BD;
+    --darkblue: #3B2C65;
+}
+
 body {
     width: 100vw;
     min-height: 100vh;
@@ -22,4 +30,20 @@ body {
 
 .form__submit {
     align-self: center;
+}
+
+.header, .nav {
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    column-gap: 5vh;
+}
+
+.header {
+    padding: 2rem 5rem;
+}
+
+.logo {
+    max-height: 7rem;
 }

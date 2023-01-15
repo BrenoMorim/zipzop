@@ -7,6 +7,14 @@ export function loadPage(page) {
     scripts[page]();
 }
 
-export function loadNav(isLogged) {
+export function loadHeader(isLogged) {
+    if (isLogged) {
+        scripts["header-logged"]();
+    } else {
+        scripts["header"]();
+    }
+}
+
+export function showMessage(kind, message) {
     
 }
