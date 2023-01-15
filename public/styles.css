@@ -11,21 +11,20 @@ body {
     min-height: 100vh;
 }
 
-.form, .container {
-    display: flex;
-    flex-direction: column;
-}
-
 .container {
     padding: 5rem;
     align-items: center;
     row-gap: 2rem;
+    display: flex;
+    flex-direction: column;
 }
 
 .form {
     align-items: baseline;
     padding: 2rem;
     row-gap: 2rem;
+    display: flex;
+    flex-direction: column;
 }
 
 .form__submit {
@@ -46,4 +45,25 @@ body {
 
 .logo {
     max-height: 7rem;
+}
+
+.message-container {
+    z-index: 3;
+    top: 1.5rem;
+    right: 1.5rem;
+    position: absolute;
+    border-radius: 1.5rem;
+    padding: 1.5rem;
+    opacity: 0.9;
+}
+.message {
+    font-size: 1.25rem;
+}
+.message-container--error {
+    background-color: #05063B;
+    color: #A5B0FF;
+}
+.message-container--success {
+    background-color: #A5B0FF;
+    color: #05063B; 
 }

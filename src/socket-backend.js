@@ -11,22 +11,22 @@ export default function socketBackend(io) {
             const success = verifyLogin(email, password);
             if (success) {
                 socket.emit("loadheader", true);
-                socket.emit("message", "success", "Logged in successfully");
+                socket.emit("message", {kind: "success", content: "Logged in successfully"});
                 socket.join(email);
             } else {
                 // TODO
-                socket.emit("message", "error", "Failed to login, please check your email and password");
+                socket.emit("message", {kind: "error", content: "Failed to login, please check your email and password"});
             }
         });
         
         socket.on("register", (nickname, email, password) => {
             const errorMessage = createUser(nickname, email, password);
             if (errorMessage) {
-                socket.emit("message", "error", errorMessage);
+                socket.emit("message", {kind: "error", content: errorMessage});
             } else {
                 socket.emit("loadheader", true)
+                socket.emit("message", {kind: "success", content: "Registered successfully"});
                 socket.join(email);
-                socket.emit("message", "success", "Registered successfully");
             }
         });
 

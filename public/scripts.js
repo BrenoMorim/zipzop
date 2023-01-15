@@ -1,6 +1,5 @@
 import { loadPage } from "./index.js";
-import { emitLogin } from "./socket-login.js";
-import { emitRegister } from "./socket-register.js";
+import { emitLogin, emitRegister } from "./socket-index.js";
 
 export const scripts = {
     "login": () => {
