@@ -1,0 +1,24 @@
+@import url("./form.css");
+@import url("./header.css");
+@import url("./message.css");
+
+:root {
+    --white: #EEEEEE;
+    --black: #05063B;
+    --lightblue: #A5B0FF;
+    --blue: #4D51BD;
+    --darkblue: #3B2C65;
+}
+
+body {
+    width: 100vw;
+    min-height: 100vh;
+}
+
+.container {
+    padding: 5rem;
+    align-items: center;
+    row-gap: 2rem;
+    display: flex;
+    flex-direction: column;
+}

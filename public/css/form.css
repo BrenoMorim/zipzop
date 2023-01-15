@@ -1,0 +1,11 @@
+.form {
+    align-items: baseline;
+    padding: 2rem;
+    row-gap: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.form__submit {
+    align-self: center;
+}

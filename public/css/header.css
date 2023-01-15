@@ -1,0 +1,15 @@
+.header, .nav {
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    column-gap: 5vh;
+}
+
+.header {
+    padding: 2rem 5rem;
+}
+
+.logo {
+    max-height: 7rem;
+}

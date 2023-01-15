@@ -1,0 +1,23 @@
+.message-container {
+    z-index: 3;
+    top: 1.5rem;
+    right: 1.5rem;
+    position: absolute;
+    border-radius: 1.5rem;
+    padding: 1.5rem;
+    opacity: 0.9;
+}
+
+.message {
+    font-size: 1.25rem;
+}
+
+.message-container--error {
+    background-color: #05063B;
+    color: #A5B0FF;
+}
+
+.message-container--success {
+    background-color: #A5B0FF;
+    color: #05063B; 
+}
