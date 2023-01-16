@@ -1,4 +1,4 @@
-import { createNewChat, getChatByParticipants, getChatsByUser } from "./service/chats.js";
+import { createNewChat, getChatByParticipants, getChatsByUser, getMessages } from "./service/chats.js";
 import { createUser, getUser, verifyLogin } from "./service/user.js";
 
 export default function socketBackend(io) {
@@ -66,6 +66,20 @@ export default function socketBackend(io) {
                 const chats = getChatsByUser(email);
                 socket.emit("load-homepage", {user, chats});
             }
+        });
+
+        socket.on("load-chat", (user, chat) => {
+            const messages = getMessages(chat.id);
+            const otherEmail = user.email == chat.participant1 ? chat.participant2 : chat.participant1;
+            const otherUser = getUser(otherEmail);
+            socket.emit("load-chat-page", {user, messages, otherNickname: otherUser.nickname});
+        });
+
+        socket.on("logout", (email) => {
+            socket.leave(email);
+            socket.emit("loadpage", "index");
+            socket.emit("loadheader");
+            socket.emit("message", {kind: "success", content: "Logged out successfully"});
         });
     });
 }

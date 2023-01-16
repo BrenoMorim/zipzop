@@ -34,12 +34,9 @@ export const pages = {
     "index": `
         <h1>Welcome to ZipZop!</h1>
         <h2>Speak privately with anyone, anytime and anywhere!</h2>
-        <div>
-            <h3>You can create an account if you're new here</h3>
-            <button class="btn btn-warning" id="register">Register</button>
-
-            <h3 class="mt-3">Or log in if you own an account</h3>
-            <button class="btn btn-success" id="login">Log in</button>
+        <div class="texts">
+            <h3>You can <span class="link" id="register">create an account</span> if you're new here</h3>
+            <h3 class="mt-3">or <span class="link" id="login">log in</span> if you own an account</h3>
         </div>
     `,
     "homepage": `
@@ -59,5 +56,11 @@ export const pages = {
             </div>
             <input type="submit" value="Start chat" class="btn btn-primary form__submit">
         </form>
+    `,
+    "chat": `
+        <h1 class="chat-title"></h1>
+        <ul class="messages"></ul>
+        <input class="form-control" id="write-message" placeholder="Message:"/>
+        <button class="btn btn-primary" id="send-message">Send message</button>
     `
 };

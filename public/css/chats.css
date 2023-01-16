@@ -1,0 +1,25 @@
+.chats {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    min-width: 60vw;
+    max-width: 80vw;
+}
+
+.chat {
+    margin: 0;
+    list-style: none;
+    padding: .5rem 1rem;
+    background-color: var(--lightblue);
+    border-top: 2px solid var(--black);
+    cursor: pointer;
+    color: var(--black);
+    transition: all 500ms;
+    width: 100%;
+}
+
+.chat:hover {
+    color: var(--lightblue);
+    background-color: var(--black);
+}

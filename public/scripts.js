@@ -1,5 +1,5 @@
 import { loadPage } from "./index.js";
-import { emitLoadHomepage, emitLogin, emitNewChat, emitRegister } from "./socket-index.js";
+import { emitLoadChat, emitLoadHomepage, emitLogin, emitLogout, emitNewChat, emitRegister } from "./socket-index.js";
 
 export const scripts = {
     "login": () => {
@@ -29,7 +29,9 @@ export const scripts = {
         } else {
             chats.forEach((chat) => {
                 const li = document.createElement("li");
+                li.classList.add("chat");
                 li.textContent = user.email == chat.participant1 ? chat.participant2 : chat.participant1;
+                li.addEventListener("click", () => emitLoadChat(user, chat));
                 list.appendChild(li);
             });
         }
@@ -41,15 +43,35 @@ export const scripts = {
             emitNewChat(form.email.value);
         });
     },
+    "chat": (user, messages, otherNickname) => {
+        document.querySelector(".chat-title").textContent = `Chat with ${otherNickname}`;
+        const list = document.querySelector(".messages");
+        if (messages == undefined) {
+            list.innerHTML = "<li>No messages yet</li>";
+        } else {
+            messages.forEach(message => {
+                const li = document.createElement("li");
+                li.classList.add("message");
+                if (message.sender === user.email) {
+                    li.classList.add("message--sent");
+                } else {
+                    li.classList.add("message--received");
+                }
+                li.textContent = message.content;
+            });
+        }
+    },
     "header": () => {
         const header = document.querySelector(".header");
         header.innerHTML = `
             <img class="logo" src="./assets/complete-logo.svg" alt="ZipZop Logo">
             <nav class="nav">
+                <button id="nav-index" class="btn btn-info">Home</button>
                 <button id="nav-login" class="btn btn-info">Login</button>
                 <button id="nav-register" class="btn btn-info">Register</button>
             </nav>
         `;
+        document.querySelector("#nav-index").addEventListener("click", () => loadPage("index"));
         document.querySelector("#nav-login").addEventListener("click", () => loadPage("login"));
         document.querySelector("#nav-register").addEventListener("click", () => loadPage("register"));
     },
@@ -66,6 +88,6 @@ export const scripts = {
         `;
         document.querySelector("#nav-chats").addEventListener("click", () => emitLoadHomepage(user.email));
         document.querySelector("#nav-profile").addEventListener("click", () => loadPage("profile"));
-        document.querySelector("#nav-logout").addEventListener("click", () => {});
+        document.querySelector("#nav-logout").addEventListener("click", () => emitLogout(user.email));
     }
 };

@@ -9,7 +9,12 @@ export function getChatsByUser(email) {
 }
 
 export function getMessages(chatId) {
-    return db.prepare("SELECT * FROM messages WHERE chat_id = ?;").get(chatId);
+    const messages = db.prepare("SELECT * FROM messages WHERE chat_id = ?;").get(chatId);
+    if (messages === undefined) return undefined;
+    if (messages.length === undefined) {
+        return [messages];
+    }
+    return messages;
 }
 
 export function getChatByParticipants(p1, p2) {

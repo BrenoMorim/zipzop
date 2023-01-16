@@ -36,3 +36,8 @@ export function showMessage(kind, message) {
         messageSpan.textContent = "";
     }, 5000);
 }
+
+export function loadChatPage(user, messages, otherNickname) {
+    document.querySelector("main").innerHTML = pages["chat"];
+    scripts["chat"](user, messages, otherNickname);
+}

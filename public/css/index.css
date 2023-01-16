@@ -1,0 +1,18 @@
+.link {
+    cursor: pointer;
+    color: var(--lightblue);
+    text-decoration: underline;
+    transition: all 500ms;
+}
+
+.link:hover {
+    color: var(--white);
+}
+
+.texts {
+    background-color: var(--darkblue);
+    color: var(--white);
+    border-radius: 1rem;
+    padding: 1rem 2rem;
+    text-align: center;
+}
