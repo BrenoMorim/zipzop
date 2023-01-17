@@ -7,19 +7,6 @@ export function loadPage(page) {
     scripts[page]();
 }
 
-export function loadHomepage(page, user, chats) {
-    document.querySelector("main").innerHTML = pages[page];
-    scripts[page]({user, chats});
-}
-
-export function loadHeader(user = {}) {
-    if (user?.email != undefined) {
-        scripts["header-logged"](user);
-    } else {
-        scripts["header"]();
-    }
-}
-
 export function showMessage(kind, message) {
     const messageContainer = document.querySelector(".message-container");
     const messageSpan = document.querySelector(".message");
@@ -32,17 +19,7 @@ export function showMessage(kind, message) {
         messageContainer.style.display = "none";
         messageContainer.classList.remove(`message-container--${kind}`);
         messageSpan.textContent = "";
-    }, 5000);
-}
-
-export function loadChatPage(user, messages, otherNickname) {
-    document.querySelector("main").innerHTML = pages["chat"];
-    scripts["chat"](user, messages, otherNickname);
-}
-
-export function loadProfile(user) {
-    document.querySelector("main").innerHTML = pages["profile"];
-    scripts["profile"](user);
+    }, 3500);
 }
 
 export function insertMessage(content, date, type, author) {
@@ -54,11 +31,15 @@ export function insertMessage(content, date, type, author) {
     const day = parsedDate.getDate() >= 10 ? parsedDate.getDate() : `0${parsedDate.getDate()}`;
     
     li.innerHTML = `<p class="message-info">
-        <span class="message-author">${author} ></span>
-        <span class="message-text-content"> ${content}</span>
+        <span class="message-author"></span> 
+        <span class="message-text-content"></span>
         </p>
-        <span class="message-time">${hours}:${minutes} ${month}/${day}/${parsedDate.getFullYear()}</span>
+        <p class="message-time">${hours}:${minutes} ${month}/${day}/${parsedDate.getFullYear()}</p>
     `;
+
+    // Grants protection against XSS
+    li.querySelector(".message-author").textContent = `${author} >`;
+    li.querySelector(".message-text-content").textContent = content;
     li.classList.add("chat-message");
     li.classList.add(`chat-message--${type}`);
 

@@ -10,6 +10,10 @@
     width: 100vw;
     padding: 2vh 5vw;
     justify-content: space-between;
+    position: sticky;
+    background-color: var(--white);
+    top: 0;
+    z-index: 5;
 }
 
 .nav {

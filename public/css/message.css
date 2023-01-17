@@ -1,15 +1,27 @@
 .message-container {
     z-index: 3;
     bottom: 50vh;
-    right: 1.5rem;
-    position: absolute;
+    position: sticky;
+    left: 70vw;
+    max-width: 50vw;
+    width: fit-content;
     border-radius: 1.5rem;
     padding: 1.5rem;
-    opacity: 0.9;
+    opacity: 0.7;
+    text-align: center;
 }
 
 .message {
     font-size: 1.25rem;
+}
+
+@media screen and (max-width: 400px) {
+    .message {
+        font-size: 0.9;
+    }
+    .message-container {
+        padding: .5rem;
+    }
 }
 
 .message-container--error {

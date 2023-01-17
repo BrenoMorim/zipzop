@@ -4,11 +4,11 @@ export const pages = {
         <form class="form">
             <div>
                 <label for="nickname" class="form-label">Nickname:</label>
-                <input autofocus autocomplete="off" class="form-control" type="nickname" name="nickname" id="nickname">
+                <input autofocus autocomplete="off" class="form-control" type="nickname" name="nickname" id="nickname" placeholder="Your nickname">
             </div>
             <div>
                 <label for="email" class="form-label">Email:</label>
-                <input autocomplete="off" class="form-control" type="email" name="email" id="email" placeholder="name@domain.com">
+                <input autocomplete="off" required class="form-control" type="email" name="email" id="email" placeholder="name@domain.com">
             </div>
             <div>
                 <label for="password" class="form-label">Password:</label>
@@ -60,6 +60,7 @@ export const pages = {
     `,
     "chat": `
         <h1 class="chat-title"></h1>
+        <div class="load-more-container"><button class="btn btn-primary" id="load-more">Load more</button></div>
         <ul class="chat-messages"></ul>
         <form id="send-message">
             <input class="form-control" name="content" required autocomplete="off" autofocus id="message-input" placeholder="Message:"/>
@@ -69,19 +70,15 @@ export const pages = {
     "profile": `
     <h1 class="profile-title"></h1>
     <h2 class="profile-email"></h2>
-    <div class="profile__form">
-        <h3 class="profile-text">Current profile picture:</h3>
-        <div id="current-profile-picture"></div>
-        <form id="add-profile-picture">
-            <h3 class="profile-text">Add new profile picture</h3>
-            <input type="file"
-                class="btn btn-info"
-                name="profile-picture"
-                id="profile-picture"
-                accept="image/png, image/jpeg">
-            <button type="submit" class="btn btn-primary">Send picture</button>
-        </form>
-    </div>
+        <form id="add-profile-picture" class="profile__form">
+        <h3 class="profile-text">Add new profile picture</h3>
+        <input type="file"
+            class="btn btn-info"
+            name="profile-picture"
+            id="profile-picture"
+            accept="image/png, image/jpeg">
+        <button type="submit" class="btn btn-primary">Send picture</button>
+    </form>
     <form class="profile__form" id="change-nickname">
         <h3 class="profile-text" id="current-nickname"></h3>
         <div class="input">

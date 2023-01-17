@@ -1,4 +1,9 @@
-import { loadChatPage, loadHeader, loadHomepage, loadPage, loadProfile, showMessage, updateChat } from "./index.js";
+import { loadPage, showMessage, updateChat } from "./index.js";
+
+import loadHeader from "./header.js";
+import loadChatPage from "./chatpage.js";
+import loadHomepage from "./homepage.js";
+import loadProfile from "./profile.js";
 
 const socket = io();
 
@@ -7,7 +12,7 @@ socket.on("loadpage", (page) => {
 });
 
 socket.on("load-homepage", ({user, chats}) => {
-    loadHomepage("homepage", user, chats);
+    loadHomepage(user, chats);
 });
 
 socket.on("loadheader", (user) => {
@@ -18,8 +23,8 @@ socket.on("message", (message) => {
     showMessage(message.kind, message.content);
 });
 
-socket.on("load-chat-page", ({user, messages, otherUser}) => {
-    loadChatPage(user, messages, otherUser);
+socket.on("load-chat-page", ({user, chat, messages, otherUser, total}) => {
+    loadChatPage(user, chat, messages, otherUser, total);
 });
 
 socket.on("load-profile", (user) => {
@@ -50,8 +55,8 @@ export function emitLoadHomepage(email) {
     socket.emit("load-homepage-with-data", email);
 }
 
-export function emitLoadChat(user, chat) {
-    socket.emit("load-chat", user, chat);
+export function emitLoadChat(user, chat, size) {
+    socket.emit("load-chat", user, chat, size);
 }
 
 export function emitLogout(email) {

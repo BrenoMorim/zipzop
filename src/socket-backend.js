@@ -1,4 +1,4 @@
-import { createNewChat, getChatByParticipants, getChatsByUser, getMessages, sendMessage } from "./service/chats.js";
+import { countMessages, createNewChat, getChatByParticipants, getChatsByUser, getMessages, sendMessage } from "./service/chats.js";
 import { createUser, getUserDto, updateUserNickname, updateUserPassword, verifyLogin } from "./service/user.js";
 
 export default function socketBackend(io) {
@@ -67,11 +67,12 @@ export default function socketBackend(io) {
             }
         });
 
-        socket.on("load-chat", (user, chat) => {
-            const messages = getMessages(chat.id);
+        socket.on("load-chat", (user, chat, size) => {
+            const messages = getMessages(chat.id, size);
+            const total = countMessages(chat.id);
             const otherEmail = user.email == chat.participant1 ? chat.participant2 : chat.participant1;
             const otherUser = getUserDto(otherEmail);
-            socket.emit("load-chat-page", {user, messages, otherUser});
+            socket.emit("load-chat-page", {user, chat, messages, otherUser, total});
         });
 
         socket.on("logout", (email) => {

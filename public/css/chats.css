@@ -43,8 +43,8 @@
     width: 100%;
     justify-content: space-between;
     flex-wrap: wrap;
-    align-items: center;
-    row-gap: .5rem;
+    align-items: flex-start;
+    row-gap: 1rem;
 }
 
 .chat-message--sent {
@@ -65,6 +65,12 @@
     column-gap: 2rem;
     min-width: 60vw;
     max-width: 80vw;
+    bottom: 2rem;
+    position: sticky;
+    z-index: 3;
+    background-color: var(--white);
+    padding: 1rem;
+    border-radius: .5rem;
 }
 
 #message-input {
@@ -78,6 +84,12 @@
 .message-time {
     font-size: .8rem;
     opacity: 0.9;
+    margin: 0;
+    align-self: flex-end;
+}
+
+.load-more-container {
+    display: none;
 }
 
 .message-info {

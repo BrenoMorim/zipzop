@@ -6,9 +6,13 @@ export function getChatsByUser(email) {
     return chats;
 }
 
-export function getMessages(chatId) {
-    const messages = db.prepare("SELECT * FROM messages WHERE chat_id = ?;").all(chatId);
+export function getMessages(chatId, size) {
+    const messages = db.prepare("SELECT * FROM messages WHERE chat_id = ? ORDER BY date DESC LIMIT ?;").all(chatId, size);
     return messages;
+}
+
+export function countMessages(chatId) {
+    return db.prepare("SELECT COUNT(*) FROM messages WHERE chat_id = ?;").get(chatId)['COUNT(*)'];
 }
 
 export function getChatByParticipants(p1, p2) {
