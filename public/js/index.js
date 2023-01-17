@@ -44,6 +44,7 @@ export function insertMessage(content, date, type, author) {
     li.classList.add(`chat-message--${type}`);
 
     document.querySelector(".chat-messages").appendChild(li);
+    document.querySelector(".chat-messages-empty").style.display = 'none';
 }
 
 export function updateChat(user, content) {

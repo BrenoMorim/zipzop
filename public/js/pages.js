@@ -61,7 +61,9 @@ export const pages = {
     "chat": `
         <h1 class="chat-title"></h1>
         <div class="load-more-container"><button class="btn btn-primary" id="load-more">Load more</button></div>
-        <ul class="chat-messages"></ul>
+        <ul class="chat-messages">
+            <li class="chat-messages-empty">No messages yet</li>
+        </ul>
         <form id="send-message">
             <input class="form-control" name="content" required autocomplete="off" autofocus id="message-input" placeholder="Message:"/>
             <button class="btn btn-primary" type="submit" id="button-send-message">Send message</button>

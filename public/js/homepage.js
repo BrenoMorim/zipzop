@@ -9,15 +9,13 @@ export default function loadHomepage(user, chats) {
     document.querySelector("#start-chat").addEventListener("click", () => loadPage("new-chat"));
 
     const list = document.querySelector(".chats");
-    if (chats == undefined) {
-        list.innerHTML = "<li>No chats yet</li>";
-    } else {
-        chats.forEach((chat) => {
-            const li = document.createElement("li");
-            li.classList.add("chat");
-            li.textContent = user.email == chat.participant1 ? chat.participant2 : chat.participant1;
-            li.addEventListener("click", () => emitLoadChat(user, chat, 12));
-            list.appendChild(li);
-        });
-    }
+    
+    chats.forEach((chat) => {
+        const li = document.createElement("li");
+        li.classList.add("chat");
+        li.textContent = user.email == chat.participant1 ? chat.participant2 : chat.participant1;
+        li.addEventListener("click", () => emitLoadChat(user, chat, 12));
+        list.appendChild(li);
+    });
+
 }

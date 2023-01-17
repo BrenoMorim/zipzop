@@ -14,8 +14,8 @@ export default function loadChatPage(user, chat, messages, otherUser, total) {
     }
 
     const list = document.querySelector(".chat-messages");
-    if (messages == undefined) {
-        list.innerHTML = "<li>No messages yet</li>";
+    if (messages.length === 0) {
+        list.innerHTML = `<li class="chat-messages-empty">No messages yet</li>`;
     } else {
         messages.reverse().forEach(message => {
             if (message.sender === user.email) {

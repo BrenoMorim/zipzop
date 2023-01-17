@@ -7,6 +7,14 @@
     max-width: 80vw;
 }
 
+.chats-empty, .chat-messages-empty {
+    color: var(--white);
+    background-color: var(--red);
+    padding: .5rem 1rem;
+    border-radius: 1rem;
+    font-weight: bold;
+}
+
 .chat {
     margin: 0;
     list-style: none;

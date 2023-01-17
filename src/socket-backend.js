@@ -61,8 +61,8 @@ export default function socketBackend(io) {
             } else {
                 createNewChat(thisEmail, email);
                 socket.emit("message", {kind: "success", content: `New chat with ${email} was created`});
-                const user = getUserDto(email);
-                const chats = getChatsByUser(email);
+                const user = getUserDto(thisEmail);
+                const chats = getChatsByUser(thisEmail);
                 socket.emit("load-homepage", {user, chats});
             }
         });

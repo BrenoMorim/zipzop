@@ -18,7 +18,9 @@ export function getUser(email) {
 }
 
 export function getUserDto(email) {
-    return userDto(getUser(email));
+    const user = getUser(email);
+    if (user == undefined) return undefined;
+    return userDto(user);
 }
 
 export function verifyLogin(email, password) {
