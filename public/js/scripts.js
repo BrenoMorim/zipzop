@@ -1,5 +1,5 @@
-import { insertMessage, loadPage } from "./index.js";
-import { emitLoadChat, emitLoadHomepage, emitLogin, emitLogout, emitNewChat, emitRegister, emitSendMessage } from "./socket-index.js";
+import { insertMessage, loadPage, loadProfile, showMessage } from "./index.js";
+import { emitChangeNickname, emitChangePassword, emitLoadChat, emitLoadHomepage, emitLogin, emitLogout, emitNewChat, emitRegister, emitSendMessage } from "./socket-index.js";
 
 export const scripts = {
     "login": () => {
@@ -17,11 +17,27 @@ export const scripts = {
         const form = document.querySelector(".form");
         form.addEventListener("submit", (event) => {
             event.preventDefault();
+
+            if (form.nickname.value.length < 3) {
+                showMessage("error", "Nickname should have at least three characters!");
+                return;
+            }
+
+            if (form.password.value.length < 7) {
+                showMessage("error", "Password should be at least 7 characters long!");
+                return;
+            }
+
+            if (form.password.value !== form.passwordConfirmation.value) {
+                showMessage("error", "Passwords aren't matching!");
+                return;
+            }
+
             emitRegister(form.nickname.value, form.email.value, form.password.value);
         });
     },
     "homepage": ({user, chats}) => {
-        document.querySelector("#greet-user").textContent = `Welcome, ${user.nickname}`;
+        document.querySelector("#greet-user").textContent = `Welcome back, ${user.nickname}!`;
         document.querySelector("#start-chat").addEventListener("click", () => loadPage("new-chat"));
         const list = document.querySelector(".chats");
         if (chats == undefined) {
@@ -92,7 +108,47 @@ export const scripts = {
             </nav>
         `;
         document.querySelector("#nav-chats").addEventListener("click", () => emitLoadHomepage(user.email));
-        document.querySelector("#nav-profile").addEventListener("click", () => loadPage("profile"));
+        document.querySelector("#nav-profile").addEventListener("click", () => loadProfile(user));
         document.querySelector("#nav-logout").addEventListener("click", () => emitLogout(user.email));
+    },
+    "profile": (user) => {
+        document.querySelector(".profile-title").textContent = `${user.nickname}'s profile`;
+        document.querySelector(".profile-email").textContent = `Email: ${user.email}`;
+        document.querySelector("#current-nickname").textContent = `Current nickname: ${user.nickname}`;
+
+        const formNickname = document.querySelector("#change-nickname");
+        formNickname.addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            if (formNickname.nickname.value === user.nickname) {
+                showMessage("error", "That's already your nickname")
+                return;
+            }
+
+            if (formNickname.nickname.value.length < 3) {
+                showMessage("error", "Nickname should have at least three characters");
+                return;
+            }
+        
+            emitChangeNickname(user, formNickname.nickname.value);
+            formNickname.nickname.value = "";
+        });
+
+        const formPassword = document.querySelector("#change-password");
+        formPassword.addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            if (formPassword.newPassword.value.length < 7) {
+                showMessage("error", "Password should be at least 7 characters long");
+                return;
+            }
+
+            if (formPassword.newPassword.value !== formPassword.confirmNewPassword.value) {
+                showMessage("error", "Passwords aren't matching");
+                return;
+            }
+
+            emitChangePassword(user, formPassword.newPassword.value);
+        });
     }
 };

@@ -13,6 +13,7 @@ export const pages = {
             <div>
                 <label for="password" class="form-label">Password:</label>
                 <input type="password" name="password" id="password" class="form-control" placeholder="Your password">
+                <input type="password" name="passwordConfirmation" class="form-control mt-3" placeholder="Confirm your password">
             </div>
             <input type="submit" value="Register" class="btn btn-primary form__submit">
         </form>
@@ -33,7 +34,7 @@ export const pages = {
     `,
     "index": `
         <h1>Welcome to ZipZop!</h1>
-        <h2>Speak privately with anyone, anytime and anywhere!</h2>
+        <h2 class="center">Speak privately with anyone, anytime and anywhere!</h2>
         <div class="texts">
             <h3>You can <span class="link" id="register">create an account</span> if you're new here</h3>
             <h3 class="mt-3">or <span class="link" id="login">log in</span> if you own an account</h3>
@@ -61,8 +62,40 @@ export const pages = {
         <h1 class="chat-title"></h1>
         <ul class="chat-messages"></ul>
         <form id="send-message">
-            <input class="form-control" name="content" id="message-input" placeholder="Message:"/>
+            <input class="form-control" name="content" required autocomplete="off" autofocus id="message-input" placeholder="Message:"/>
             <button class="btn btn-primary" type="submit" id="button-send-message">Send message</button>
         </form>
+    `,
+    "profile": `
+    <h1 class="profile-title"></h1>
+    <h2 class="profile-email"></h2>
+    <div class="profile__form">
+        <h3 class="profile-text">Current profile picture:</h3>
+        <div id="current-profile-picture"></div>
+        <form id="add-profile-picture">
+            <h3 class="profile-text">Add new profile picture</h3>
+            <input type="file"
+                class="btn btn-info"
+                name="profile-picture"
+                id="profile-picture"
+                accept="image/png, image/jpeg">
+            <button type="submit" class="btn btn-primary">Send picture</button>
+        </form>
+    </div>
+    <form class="profile__form" id="change-nickname">
+        <h3 class="profile-text" id="current-nickname"></h3>
+        <div class="input">
+            <input class="form-control" name="nickname" type="text" placeholder="New nickname" autocomplete="off" />
+        </div>
+        <button class="btn btn-primary type="submit">Change Nickname</button>
+    </form>
+    <form class="profile__form" id="change-password">
+        <h3 class="profile-text">Change password</h3>
+        <div class="input">
+            <input class="form-control" name="newPassword" placeholder="New password" type="password" autocomplete="off" />
+            <input class="form-control mt-3" name="confirmNewPassword" placeholder="Confirm new password" type="password" autocomplete="off" />
+        </div>
+        <button class="btn btn-primary type="submit">Change Password</button>
+    </form>
     `
 };

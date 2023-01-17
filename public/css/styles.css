@@ -3,6 +3,7 @@
 @import url("./message.css");
 @import url("./chats.css");
 @import url("./index.css");
+@import url("./profile.css");
 
 :root {
     --white: #EEEEEE;
@@ -19,9 +20,11 @@ body {
 }
 
 .container {
-    padding: 5rem;
+    padding: 2.5rem;
     align-items: center;
     row-gap: 2rem;
     display: flex;
     flex-direction: column;
+    margin: 0;
+    box-sizing: border-box;
 }

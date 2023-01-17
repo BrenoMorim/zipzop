@@ -3,19 +3,19 @@
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    column-gap: 5vh;
+    row-gap: 1rem;
 }
 
 .header {
     width: 100vw;
     padding: 2vh 5vw;
-    row-gap: .5rem;
     justify-content: space-between;
 }
 
 .nav {
-    justify-content: flex-start;
+    justify-content: flex-end;
     align-items: center;
+    column-gap: 3vh;
 }
 
 .header__text {
@@ -24,4 +24,5 @@
 
 .logo {
     max-height: 7rem;
+    max-width: 40vw;
 }

@@ -1,4 +1,4 @@
-import { loadChatPage, loadHeader, loadHomepage, loadPage, showMessage, updateChat } from "./index.js";
+import { loadChatPage, loadHeader, loadHomepage, loadPage, loadProfile, showMessage, updateChat } from "./index.js";
 
 const socket = io();
 
@@ -20,6 +20,10 @@ socket.on("message", (message) => {
 
 socket.on("load-chat-page", ({user, messages, otherUser}) => {
     loadChatPage(user, messages, otherUser);
+});
+
+socket.on("load-profile", (user) => {
+    loadProfile(user);
 });
 
 socket.on("receive-message", (user, content) => {
@@ -55,6 +59,13 @@ export function emitLogout(email) {
 }
 
 export function emitSendMessage(sender, receiver, content) {
-    console.log("sending message");
     socket.emit("send-message", sender, receiver, content);
+}
+
+export function emitChangeNickname(user, newNickname) {
+    socket.emit("change-nickname", user, newNickname);
+}
+
+export function emitChangePassword(user, newPassword) {
+    socket.emit("change-password", user, newPassword);
 }

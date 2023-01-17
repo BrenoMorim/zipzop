@@ -40,10 +40,13 @@ export function loadChatPage(user, messages, otherNickname) {
     scripts["chat"](user, messages, otherNickname);
 }
 
+export function loadProfile(user) {
+    document.querySelector("main").innerHTML = pages["profile"];
+    scripts["profile"](user);
+}
+
 export function insertMessage(content, date, type, author) {
     const li = document.createElement("li");
-
-
     const parsedDate = new Date(date);
     const hours = parsedDate.getHours() >= 10 ? parsedDate.getHours() : `0${parsedDate.getHours()}`;
     const minutes = parsedDate.getMinutes() >= 10 ? parsedDate.getMinutes() : `0${parsedDate.getMinutes()}`;

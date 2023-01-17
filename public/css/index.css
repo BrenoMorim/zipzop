@@ -9,6 +9,10 @@
     color: var(--white);
 }
 
+.center {
+    text-align: center;
+}
+
 .texts {
     background-color: var(--darkblue);
     color: var(--white);
