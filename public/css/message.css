@@ -15,9 +15,11 @@
 .message-container--error {
     background-color: var(--red);
     color: var(--white);
+    border: 2px solid var(--white);
 }
 
 .message-container--success {
     background-color: var(--lightblue);
     color: var(--black);
+    border: 2px solid var(--black);
 }

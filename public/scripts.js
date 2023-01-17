@@ -1,5 +1,5 @@
-import { loadPage } from "./index.js";
-import { emitLoadChat, emitLoadHomepage, emitLogin, emitLogout, emitNewChat, emitRegister } from "./socket-index.js";
+import { insertMessage, loadPage } from "./index.js";
+import { emitLoadChat, emitLoadHomepage, emitLogin, emitLogout, emitNewChat, emitRegister, emitSendMessage } from "./socket-index.js";
 
 export const scripts = {
     "login": () => {
@@ -43,23 +43,28 @@ export const scripts = {
             emitNewChat(form.email.value);
         });
     },
-    "chat": (user, messages, otherNickname) => {
-        document.querySelector(".chat-title").textContent = `Chat with ${otherNickname}`;
-        const list = document.querySelector(".messages");
+    "chat": (user, messages, otherUser) => {
+        document.querySelector(".chat-title").textContent = `Chat with ${otherUser.nickname}`;
+        const list = document.querySelector(".chat-messages");
         if (messages == undefined) {
             list.innerHTML = "<li>No messages yet</li>";
         } else {
             messages.forEach(message => {
-                const li = document.createElement("li");
-                li.classList.add("message");
                 if (message.sender === user.email) {
-                    li.classList.add("message--sent");
+                    insertMessage(message.content, message.date, "sent", user.nickname);
                 } else {
-                    li.classList.add("message--received");
+                    insertMessage(message.content, message.date, "received", otherUser.nickname);
                 }
-                li.textContent = message.content;
             });
         }
+        const form = document.querySelector("#send-message");
+        form.addEventListener("click", (event) => {
+            event.preventDefault();
+            if (form.content.value.length == 0) return;
+            insertMessage(form.content.value, new Date().toISOString(), "sent", user.nickname);
+            emitSendMessage(user.email, otherUser.email, form.content.value);
+            form.content.value = "";
+        });
     },
     "header": () => {
         const header = document.querySelector(".header");

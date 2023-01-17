@@ -1,4 +1,4 @@
-import { loadChatPage, loadHeader, loadHomepage, loadPage, showMessage } from "./index.js";
+import { loadChatPage, loadHeader, loadHomepage, loadPage, showMessage, updateChat } from "./index.js";
 
 const socket = io();
 
@@ -18,8 +18,16 @@ socket.on("message", (message) => {
     showMessage(message.kind, message.content);
 });
 
-socket.on("load-chat-page", ({user, messages, otherNickname}) => {
-    loadChatPage(user, messages, otherNickname);
+socket.on("load-chat-page", ({user, messages, otherUser}) => {
+    loadChatPage(user, messages, otherUser);
+});
+
+socket.on("receive-message", (user, content) => {
+    if (document.querySelector("h1").textContent == `Chat with ${user.nickname}`) {
+        updateChat(user, content);
+    } else {
+        showMessage("success", `${user.nickname} has sent you a message`);
+    }
 });
 
 export function emitLogin(email, password) {
@@ -44,4 +52,9 @@ export function emitLoadChat(user, chat) {
 
 export function emitLogout(email) {
     socket.emit("logout", email);
+}
+
+export function emitSendMessage(sender, receiver, content) {
+    console.log("sending message");
+    socket.emit("send-message", sender, receiver, content);
 }

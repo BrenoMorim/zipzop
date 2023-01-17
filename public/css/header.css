@@ -2,11 +2,14 @@
     flex-direction: row;
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     column-gap: 5vh;
 }
 
 .header {
-    padding: 2rem 5rem;
+    width: 100vw;
+    padding: 2vh 5vw;
+    row-gap: .5rem;
     justify-content: space-between;
 }
 

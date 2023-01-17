@@ -59,8 +59,10 @@ export const pages = {
     `,
     "chat": `
         <h1 class="chat-title"></h1>
-        <ul class="messages"></ul>
-        <input class="form-control" id="write-message" placeholder="Message:"/>
-        <button class="btn btn-primary" id="send-message">Send message</button>
+        <ul class="chat-messages"></ul>
+        <form id="send-message">
+            <input class="form-control" name="content" id="message-input" placeholder="Message:"/>
+            <button class="btn btn-primary" type="submit" id="button-send-message">Send message</button>
+        </form>
     `
 };
