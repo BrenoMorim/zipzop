@@ -7,7 +7,7 @@
     max-width: 80vw;
 }
 
-.chats-empty, .chat-messages-empty {
+.chats--empty {
     color: var(--white);
     background-color: var(--red);
     padding: .5rem 1rem;
@@ -15,7 +15,7 @@
     font-weight: bold;
 }
 
-.chat {
+.chats__chat {
     margin: 0;
     list-style: none;
     padding: .5rem 1rem;
@@ -25,87 +25,34 @@
     color: var(--black);
     transition: all 500ms;
     width: 100%;
+    display: flex;
+    column-gap: 1rem;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
-.chat:hover {
+.chats__chat:hover {
     color: var(--lightblue);
     background-color: var(--black);
 }
 
-.chat-messages {
-    min-width: 60vw;
-    max-width: 80vw;
-    padding: 1rem;
-    margin: none;
-    display: flex;
-    flex-direction: column;
-    row-gap: .5rem;
-}
-
-.chat-message {
-    font-size: 1.25rem;
-    list-style: none;
-    border-radius: 1rem;
-    padding: .5rem 1rem;
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    row-gap: 1rem;
-}
-
-.chat-message--sent {
-    color: var(--black);
-    background-color: var(--lightblue);
-}
-
-.chat-message--received {
-    color: var(--white);
-    background-color: var(--darkblue);
-}
-
-#send-message {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    column-gap: 2rem;
-    min-width: 60vw;
-    max-width: 80vw;
-    bottom: 2rem;
-    position: sticky;
-    z-index: 3;
-    background-color: var(--white);
-    padding: 1rem;
-    border-radius: .5rem;
-}
-
-#message-input {
-    width: 70%;
-}
-
-.message-author {
+.chats__chat__email {
     font-weight: bold;
+    font-size: 1.25rem;
 }
 
-.message-time {
-    font-size: .8rem;
+.chats__chat__last-updated {
     opacity: 0.9;
-    margin: 0;
+    font-size: 0.75rem;
     align-self: flex-end;
 }
 
-.load-more-container {
-    display: none;
-}
-
-.message-info {
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    flex-wrap: wrap;
-    row-gap: .5rem;
-    margin: 0;
-    column-gap: .25rem;
+@media screen and (max-width: 1024px) {
+    .chats__chat__last-updated {
+        display: none;
+    }
+    .chats__chat__last-message {
+        display: none;
+    }
 }

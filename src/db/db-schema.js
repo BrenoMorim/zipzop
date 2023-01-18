@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS chats (
     id INTEGER NOT NULL UNIQUE,
     participant1 TEXT NOT NULL,
     participant2 TEXT NOT NULL,
+    last_updated DATETIME NOT NULL,
     FOREIGN KEY (participant1) REFERENCES people (email),
     FOREIGN KEY (participant2) REFERENCES people (email),
     PRIMARY KEY (id)

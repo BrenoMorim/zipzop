@@ -1,4 +1,4 @@
-.message-container {
+.notification {
     z-index: 3;
     bottom: 50vh;
     position: sticky;
@@ -7,30 +7,30 @@
     width: fit-content;
     border-radius: 1.5rem;
     padding: 1.5rem;
-    opacity: 0.7;
+    opacity: 0.8;
     text-align: center;
 }
 
-.message {
+.notification__message {
     font-size: 1.25rem;
 }
 
 @media screen and (max-width: 400px) {
-    .message {
+    .notification__message {
         font-size: 0.9;
     }
-    .message-container {
+    .notification {
         padding: .5rem;
     }
 }
 
-.message-container--error {
+.notification--error {
     background-color: var(--red);
     color: var(--white);
     border: 2px solid var(--white);
 }
 
-.message-container--success {
+.notification--success {
     background-color: var(--lightblue);
     color: var(--black);
     border: 2px solid var(--black);

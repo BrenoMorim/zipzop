@@ -59,10 +59,10 @@ export const pages = {
         </form>
     `,
     "chat": `
-        <h1 class="chat-title"></h1>
-        <div class="load-more-container"><button class="button" id="load-more">Load more</button></div>
-        <ul class="chat-messages">
-            <li class="chat-messages-empty">No messages yet</li>
+        <h1 class="chat__title"></h1>
+        <div class="chat__load-more"><button class="button" id="load-more">Load more</button></div>
+        <ul class="chat">
+            <li class="chat__message--empty">No messages yet</li>
         </ul>
         <form id="send-message">
             <input class="form-control" name="content" required autocomplete="off" autofocus id="message-input" placeholder="Message:"/>
@@ -70,31 +70,31 @@ export const pages = {
         </form>
     `,
     "profile": `
-    <h1 class="profile-title"></h1>
-    <h2 class="profile-email"></h2>
-        <form id="add-profile-picture" class="profile__form">
-        <h3 class="profile-text">Add new profile picture</h3>
-        <input type="file"
-            class="button button--alternative"
-            name="profile-picture"
-            id="profile-picture"
-            accept="image/png, image/jpeg">
-        <button type="submit" class="button button--alternative">Send picture</button>
-    </form>
-    <form class="profile__form" id="change-nickname">
-        <h3 class="profile-text" id="current-nickname"></h3>
-        <div class="input">
-            <input class="form-control" name="nickname" type="text" placeholder="New nickname" autocomplete="off" />
-        </div>
-        <button class="button button--alternative" type="submit">Change Nickname</button>
-    </form>
-    <form class="profile__form" id="change-password">
-        <h3 class="profile-text">Change password</h3>
-        <div class="input">
-            <input class="form-control" name="newPassword" placeholder="New password" type="password" autocomplete="off" />
-            <input class="form-control mt-3" name="confirmNewPassword" placeholder="Confirm new password" type="password" autocomplete="off" />
-        </div>
-        <button class="button button--alternative" type="submit">Change Password</button>
-    </form>
+        <h1 class="profile__title"></h1>
+        <h2 class="profile__email"></h2>
+            <form id="add-profile-picture" class="profile__form">
+            <h3 class="profile__text">Add new profile picture</h3>
+            <input type="file"
+                class="button button--alternative"
+                name="profile-picture"
+                id="profile-picture"
+                accept="image/png, image/jpeg">
+            <button type="submit" class="button button--alternative">Send picture</button>
+        </form>
+        <form class="profile__form" id="change-nickname">
+            <h3 class="profile__text" id="current-nickname"></h3>
+            <div class="profile__input">
+                <input class="form-control" name="nickname" type="text" placeholder="New nickname" autocomplete="off" />
+            </div>
+            <button class="button button--alternative" type="submit">Change Nickname</button>
+        </form>
+        <form class="profile__form" id="change-password">
+            <h3 class="profile__text">Change password</h3>
+            <div class="profile__input">
+                <input class="form-control" name="newPassword" placeholder="New password" type="password" autocomplete="off" />
+                <input class="form-control mt-3" name="confirmNewPassword" placeholder="Confirm new password" type="password" autocomplete="off" />
+            </div>
+            <button class="button button--alternative" type="submit">Change Password</button>
+        </form>
     `
 };

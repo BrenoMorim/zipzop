@@ -13,32 +13,41 @@ export default function socketBackend(io) {
             if (success) {
                 const user = getUserDto(email);
                 socket.emit("loadheader", user);
-                socket.emit("message", {kind: "success", content: `Logged in as '${user.nickname}'!`});
+                socket.emit("notification", {kind: "success", content: `Logged in as '${user.nickname}'!`});
                 socket.join(email);
-                const chats = getChatsByUser(email);
-                socket.emit("load-homepage", {user, chats});
+                socket.emit("request-load-homepage", {user});
             } else {
-                socket.emit("message", {kind: "error", content: "Failed to login, please check your email and password"});
+                socket.emit("notification", {kind: "error", content: "Failed to login, please check your email and password"});
             }
         });
 
         socket.on("load-homepage-with-data", (email) => {
             const user = getUserDto(email);
             const chats = getChatsByUser(email);
+            chats.forEach(chat => {
+                const lastMessage = getMessages(chat.id, 1);
+                if (lastMessage.length == 0) {
+                    chat.lastMessage = undefined;
+                } else {
+                    chat.lastMessage = {
+                        content: lastMessage.at(0).content,
+                        sender: getUserDto(lastMessage.at(0).sender).nickname,
+                        date: lastMessage.at(0).date
+                    };                }
+            });
             socket.emit("load-homepage", {user, chats});
         })
         
         socket.on("register", (nickname, email, password) => {
             const errorMessage = createUser(nickname, email, password);
             if (errorMessage) {
-                socket.emit("message", {kind: "error", content: errorMessage});
+                socket.emit("notification", {kind: "error", content: errorMessage});
             } else {
                 socket.emit("loadheader", getUserDto(email));
-                socket.emit("message", {kind: "success", content: `User '${nickname}' registered successfully`});
+                socket.emit("notification", {kind: "success", content: `User '${nickname}' registered successfully`});
                 socket.join(email);
                 const user = getUserDto(email);
-                const chats = getChatsByUser(email);
-                socket.emit("load-homepage", {user, chats});
+                socket.emit("request-load-homepage", {user});
             }
         });
 
@@ -51,16 +60,16 @@ export default function socketBackend(io) {
                 }
             });
             if (thisEmail === email) {
-                socket.emit("message", {kind: "error", content: "Can't start a chat with yourself"});
+                socket.emit("notification", {kind: "error", content: "Can't start a chat with yourself"});
             }
             else if (getUserDto(email) === undefined) {
-                socket.emit("message", {kind: "error", content: "There's no user with that email"});
+                socket.emit("notification", {kind: "error", content: "There's no user with that email"});
             }
             else if (getChatByParticipants(thisEmail, email) !== undefined) {
-                socket.emit("message", {kind: "error", content: "There's already a chat between you two"});
+                socket.emit("notification", {kind: "error", content: "There's already a chat between you two"});
             } else {
                 createNewChat(thisEmail, email);
-                socket.emit("message", {kind: "success", content: `New chat with ${email} was created`});
+                socket.emit("notification", {kind: "success", content: `New chat with ${email} was created`});
                 const user = getUserDto(thisEmail);
                 const chats = getChatsByUser(thisEmail);
                 socket.emit("load-homepage", {user, chats});
@@ -79,7 +88,7 @@ export default function socketBackend(io) {
             socket.leave(email);
             socket.emit("loadpage", "index");
             socket.emit("loadheader");
-            socket.emit("message", {kind: "success", content: "Logged out successfully!"});
+            socket.emit("notification", {kind: "success", content: "Logged out successfully!"});
         });
 
         socket.on("send-message", (sender, receiver, content) => {
@@ -90,13 +99,13 @@ export default function socketBackend(io) {
 
         socket.on("change-nickname", (user, newNickname) => {
             updateUserNickname(user.email, newNickname);
-            socket.emit("message", {kind: "success", content: "Nickname updated successfully!"});
+            socket.emit("notification", {kind: "success", content: "Nickname updated successfully!"});
             socket.emit("load-profile", getUserDto(user.email));
         });
 
         socket.on("change-password", (user, newPassword) => {
             const message = updateUserPassword(user.email, newPassword);
-            socket.emit("message", message);
+            socket.emit("notification", message);
             socket.emit("load-profile", user);
         });
     });

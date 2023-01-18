@@ -8,8 +8,8 @@ export default function loadHeader(user = {}) {
 
         const header = document.querySelector(".header");
         header.innerHTML = `
-            <img class="logo" src="./assets/complete-logo.svg" alt="ZipZop Logo">
-            <nav class="nav">
+            <img class="header__logo" src="./assets/complete-logo.svg" alt="ZipZop Logo">
+            <nav class="header__nav">
                 <p class="header__text">Welcome, ${user.nickname}</p>
                 <button id="nav-chats" class="button">Chats</button>
                 <button id="nav-profile" class="button">My profile</button>
@@ -24,8 +24,8 @@ export default function loadHeader(user = {}) {
 
         const header = document.querySelector(".header");
         header.innerHTML = `
-            <img class="logo" src="./assets/complete-logo.svg" alt="ZipZop Logo">
-            <nav class="nav">
+            <img class="header__logo" src="./assets/complete-logo.svg" alt="ZipZop Logo">
+            <nav class="header__nav">
                 <button id="nav-index" class="button">Home</button>
                 <button id="nav-login" class="button">Login</button>
                 <button id="nav-register" class="button">Register</button>

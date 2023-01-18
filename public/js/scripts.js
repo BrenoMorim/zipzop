@@ -1,4 +1,4 @@
-import { loadPage, showMessage } from "./index.js";
+import { loadPage, showNotification } from "./index.js";
 import { emitLogin, emitNewChat, emitRegister } from "./socket-index.js";
 
 export const scripts = {
@@ -19,17 +19,17 @@ export const scripts = {
             event.preventDefault();
 
             if (form.nickname.value.length < 3) {
-                showMessage("error", "Nickname should have at least three characters!");
+                showNotification("error", "Nickname should have at least three characters!");
                 return;
             }
 
             if (form.password.value.length < 7) {
-                showMessage("error", "Password should be at least 7 characters long!");
+                showNotification("error", "Password should be at least 7 characters long!");
                 return;
             }
 
             if (form.password.value !== form.passwordConfirmation.value) {
-                showMessage("error", "Passwords aren't matching!");
+                showNotification("error", "Passwords aren't matching!");
                 return;
             }
 

@@ -1,8 +1,7 @@
 import db from "../db/db.js";
 
 export function getChatsByUser(email) {
-    const chats = db.prepare("SELECT * FROM chats WHERE participant1 = ? or participant2 = ?;").all(email, email);
-
+    const chats = db.prepare("SELECT * FROM chats WHERE participant1 = ? or participant2 = ? ORDER BY last_updated DESC;").all(email, email);
     return chats;
 }
 
@@ -20,10 +19,12 @@ export function getChatByParticipants(p1, p2) {
 }
 
 export function createNewChat(p1, p2) {
-    return db.prepare("INSERT INTO chats (participant1, participant2) VALUES (?, ?);").run(p1, p2);
+    return db.prepare("INSERT INTO chats (participant1, participant2, last_updated) VALUES (?, ?, ?);").run(p1, p2, new Date().toISOString());
 }
 
 export function sendMessage(sender, receiver, content) {
     const chat = getChatByParticipants(sender, receiver);
-    return db.prepare("INSERT INTO messages (content, date, sender, receiver, chat_id) VALUES (?, ?, ?, ?, ?);").run(content, new Date().toISOString(), sender, receiver, chat.id);
+    const now = new Date().toISOString();
+    db.prepare("UPDATE chats SET last_updated = ? WHERE id = ?;").run(now, chat.id);
+    return db.prepare("INSERT INTO messages (content, date, sender, receiver, chat_id) VALUES (?, ?, ?, ?, ?);").run(content, now, sender, receiver, chat.id);
 }

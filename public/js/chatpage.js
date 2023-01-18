@@ -4,10 +4,10 @@ import { emitLoadChat, emitSendMessage } from "./socket-index.js";
 
 export default function loadChatPage(user, chat, messages, otherUser, total) {
     document.querySelector("main").innerHTML = pages["chat"];
-    document.querySelector(".chat-title").textContent = `Chat with ${otherUser.nickname}`;
+    document.querySelector(".chat__title").textContent = `Chat with ${otherUser.nickname}`;
 
     if (messages.length < total) {
-        document.querySelector(".load-more-container").style.display = "flex";
+        document.querySelector(".chat__load-more").style.display = "flex";
         document.querySelector("#load-more").addEventListener("click", () => {
             emitLoadChat(user, chat, messages.length + 12);
         });

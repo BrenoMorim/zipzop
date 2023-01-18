@@ -1,4 +1,4 @@
-import { loadPage, showMessage, updateChat } from "./index.js";
+import { loadPage, showNotification, updateChat } from "./index.js";
 
 import loadHeader from "./header.js";
 import loadChatPage from "./chatpage.js";
@@ -15,12 +15,16 @@ socket.on("load-homepage", ({user, chats}) => {
     loadHomepage(user, chats);
 });
 
+socket.on("request-load-homepage", ({user}) => {
+    emitLoadHomepage(user.email);
+});
+
 socket.on("loadheader", (user) => {
     loadHeader(user);
 });
 
-socket.on("message", (message) => {
-    showMessage(message.kind, message.content);
+socket.on("notification", (notification) => {
+    showNotification(notification.kind, notification.content);
 });
 
 socket.on("load-chat-page", ({user, chat, messages, otherUser, total}) => {
@@ -35,7 +39,7 @@ socket.on("receive-message", (user, content) => {
     if (document.querySelector("h1").textContent == `Chat with ${user.nickname}`) {
         updateChat(user, content);
     } else {
-        showMessage("success", `${user.nickname} has sent you a message`);
+        showNotification("success", `${user.nickname} has sent you a message`);
     }
 });
 
