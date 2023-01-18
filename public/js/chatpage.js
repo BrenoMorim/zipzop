@@ -13,18 +13,14 @@ export default function loadChatPage(user, chat, messages, otherUser, total) {
         });
     }
 
-    const list = document.querySelector(".chat-messages");
-    if (messages.length === 0) {
-        list.innerHTML = `<li class="chat-messages-empty">No messages yet</li>`;
-    } else {
-        messages.reverse().forEach(message => {
-            if (message.sender === user.email) {
-                insertMessage(message.content, message.date, "sent", user.nickname);
-            } else {
-                insertMessage(message.content, message.date, "received", otherUser.nickname);
-            }
-        });
-    }
+    messages.reverse().forEach(message => {
+        if (message.sender === user.email) {
+            insertMessage(message.content, message.date, "sent", user.nickname);
+        } else {
+            insertMessage(message.content, message.date, "received", otherUser.nickname);
+        }
+
+    });
     const form = document.querySelector("#send-message");
     form.addEventListener("click", (event) => {
         event.preventDefault();

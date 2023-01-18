@@ -1,4 +1,5 @@
 import { countMessages, createNewChat, getChatByParticipants, getChatsByUser, getMessages, sendMessage } from "./service/chats.js";
+import { encrypt } from "./service/encryptionService.js";
 import { createUser, getUserDto, updateUserNickname, updateUserPassword, verifyLogin } from "./service/user.js";
 
 export default function socketBackend(io) {

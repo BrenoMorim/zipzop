@@ -1,4 +1,5 @@
 import db from "../db/db.js";
+import { decrypt, encrypt } from "./encryptionService.js";
 
 export function getChatsByUser(email) {
     const chats = db.prepare("SELECT * FROM chats WHERE participant1 = ? or participant2 = ? ORDER BY last_updated DESC;").all(email, email);
@@ -7,6 +8,9 @@ export function getChatsByUser(email) {
 
 export function getMessages(chatId, size) {
     const messages = db.prepare("SELECT * FROM messages WHERE chat_id = ? ORDER BY date DESC LIMIT ?;").all(chatId, size);
+    messages.forEach(message => {
+        message.content = decrypt(message.content);
+    })
     return messages;
 }
 
@@ -23,8 +27,9 @@ export function createNewChat(p1, p2) {
 }
 
 export function sendMessage(sender, receiver, content) {
+    const encryptedContent = encrypt(content);
     const chat = getChatByParticipants(sender, receiver);
     const now = new Date().toISOString();
     db.prepare("UPDATE chats SET last_updated = ? WHERE id = ?;").run(now, chat.id);
-    return db.prepare("INSERT INTO messages (content, date, sender, receiver, chat_id) VALUES (?, ?, ?, ?, ?);").run(content, now, sender, receiver, chat.id);
+    return db.prepare("INSERT INTO messages (content, date, sender, receiver, chat_id) VALUES (?, ?, ?, ?, ?);").run(encryptedContent, now, sender, receiver, chat.id);
 }

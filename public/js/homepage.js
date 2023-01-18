@@ -10,6 +10,10 @@ export default function loadHomepage(user, chats) {
 
     const list = document.querySelector(".chats");
     
+    if (chats.length == 0) {
+        list.innerHTML = '<li class="chats--empty">No chats yet</li>';
+    }
+
     chats.forEach((chat) => {
         const li = document.createElement("li");
         li.className = "chats__chat";
@@ -30,7 +34,7 @@ export default function loadHomepage(user, chats) {
             spanLastUpdated.className = "chats__chat__last-updated";
             spanLastUpdated.textContent = formatDate(chat.lastMessage.date);
             li.appendChild(spanLastUpdated);
-            
+
         }
 
         li.addEventListener("click", () => emitLoadChat(user, chat, 12));
