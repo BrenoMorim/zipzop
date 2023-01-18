@@ -15,7 +15,7 @@ export const pages = {
                 <input type="password" name="password" id="password" class="form-control" placeholder="Your password">
                 <input type="password" name="passwordConfirmation" class="form-control mt-3" placeholder="Confirm your password">
             </div>
-            <input type="submit" value="Register" class="btn btn-primary form__submit">
+            <input type="submit" value="Register" class="button button--alternative form__submit">
         </form>
     `,
     "login": `
@@ -29,7 +29,7 @@ export const pages = {
                 <label for="password" class="form-label">Password:</label>
                 <input type="password" name="password" id="password" class="form-control" placeholder="Your password">
             </div>
-            <input type="submit" value="Sign in" class="btn btn-primary form__submit">
+            <input type="submit" value="Sign in" class="button button--alternative form__submit">
         </form>
     `,
     "index": `
@@ -43,7 +43,7 @@ export const pages = {
     "homepage": `
         <h1 id="greet-user"></h1>
         <h2>Your chats</h2>
-        <button id="start-chat" class="btn btn-dark">Start new chat</button>
+        <button id="start-chat" class="button button--alternative">Start new chat</button>
         <ul class="chats">
 
         </ul>
@@ -55,18 +55,18 @@ export const pages = {
                 <label for="email" class="form-label">Email:</label>
                 <input autofocus autocomplete="off" class="form-control" type="email" name="email" id="email" placeholder="name@domain.com">
             </div>
-            <input type="submit" value="Start chat" class="btn btn-primary form__submit">
+            <input type="submit" value="Start chat" class="button button--alternative form__submit">
         </form>
     `,
     "chat": `
         <h1 class="chat-title"></h1>
-        <div class="load-more-container"><button class="btn btn-primary" id="load-more">Load more</button></div>
+        <div class="load-more-container"><button class="button" id="load-more">Load more</button></div>
         <ul class="chat-messages">
             <li class="chat-messages-empty">No messages yet</li>
         </ul>
         <form id="send-message">
             <input class="form-control" name="content" required autocomplete="off" autofocus id="message-input" placeholder="Message:"/>
-            <button class="btn btn-primary" type="submit" id="button-send-message">Send message</button>
+            <button class="button button--alternative" type="submit" id="button-send-message">Send message</button>
         </form>
     `,
     "profile": `
@@ -75,18 +75,18 @@ export const pages = {
         <form id="add-profile-picture" class="profile__form">
         <h3 class="profile-text">Add new profile picture</h3>
         <input type="file"
-            class="btn btn-info"
+            class="button button--alternative"
             name="profile-picture"
             id="profile-picture"
             accept="image/png, image/jpeg">
-        <button type="submit" class="btn btn-primary">Send picture</button>
+        <button type="submit" class="button button--alternative">Send picture</button>
     </form>
     <form class="profile__form" id="change-nickname">
         <h3 class="profile-text" id="current-nickname"></h3>
         <div class="input">
             <input class="form-control" name="nickname" type="text" placeholder="New nickname" autocomplete="off" />
         </div>
-        <button class="btn btn-primary type="submit">Change Nickname</button>
+        <button class="button button--alternative" type="submit">Change Nickname</button>
     </form>
     <form class="profile__form" id="change-password">
         <h3 class="profile-text">Change password</h3>
@@ -94,7 +94,7 @@ export const pages = {
             <input class="form-control" name="newPassword" placeholder="New password" type="password" autocomplete="off" />
             <input class="form-control mt-3" name="confirmNewPassword" placeholder="Confirm new password" type="password" autocomplete="off" />
         </div>
-        <button class="btn btn-primary type="submit">Change Password</button>
+        <button class="button button--alternative" type="submit">Change Password</button>
     </form>
     `
 };

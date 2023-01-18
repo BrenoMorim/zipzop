@@ -11,9 +11,9 @@ export default function loadHeader(user = {}) {
             <img class="logo" src="./assets/complete-logo.svg" alt="ZipZop Logo">
             <nav class="nav">
                 <p class="header__text">Welcome, ${user.nickname}</p>
-                <button id="nav-chats" class="btn btn-info">Chats</button>
-                <button id="nav-profile" class="btn btn-info">My profile</button>
-                <button id="nav-logout" class="btn btn-info">Log out</button>
+                <button id="nav-chats" class="button">Chats</button>
+                <button id="nav-profile" class="button">My profile</button>
+                <button id="nav-logout" class="button">Log out</button>
             </nav>
         `;
         document.querySelector("#nav-chats").addEventListener("click", () => emitLoadHomepage(user.email));
@@ -26,9 +26,9 @@ export default function loadHeader(user = {}) {
         header.innerHTML = `
             <img class="logo" src="./assets/complete-logo.svg" alt="ZipZop Logo">
             <nav class="nav">
-                <button id="nav-index" class="btn btn-info">Home</button>
-                <button id="nav-login" class="btn btn-info">Login</button>
-                <button id="nav-register" class="btn btn-info">Register</button>
+                <button id="nav-index" class="button">Home</button>
+                <button id="nav-login" class="button">Login</button>
+                <button id="nav-register" class="button">Register</button>
             </nav>
         `;
         document.querySelector("#nav-index").addEventListener("click", () => loadPage("index"));
