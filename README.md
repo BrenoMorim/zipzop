@@ -6,7 +6,7 @@
 
 ZipZop is a messaging app inspired by WhatsApp, here in Brazil some people like to call it this way, that's why I've chosen this name for my final project. ZipZop was developed in JavaScript, Express was used to instantiate a server and make the HTML page accessible, socket.io made it possible to send and receive messages in real time by using WebSockets and event-oriented programming. For the database, I used sqlite3, with the library better-sqlite3 to connect to it and execute the commands. Crypto was used to protect messages with encryption and BCrypt to hash passwords. The logo design and the planning for the project were done with Figma.
 
-![ZipZop Project](./project-images/project.png#vitrine-dev "ZipZop")
+![ZipZop Project](https://github.com/BrenoMorim/zipzop/blob/main/project-images/project.png?raw=true#vitrine-dev "ZipZop")
 
 ---
 
