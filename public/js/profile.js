@@ -2,15 +2,19 @@ import { displayProfilePicture, showNotification } from "./index.js";
 import { pages } from "./pages.js";
 import { emitAddProfilePicture, emitChangeNickname, emitChangePassword, emitRemoveProfilePicture } from "./socket-index.js";
 
+// Loads the profile page
 export default function loadProfile(user) {
 
     document.querySelector("main").innerHTML = pages["profile"];
+
+    // Shows the user info
     document.querySelector(".profile__title").textContent = `${user.nickname}'s profile`;
     document.querySelector(".profile__email").textContent = `Email: ${user.email}`;
     document.querySelector("#current-nickname").textContent = `Current nickname: ${user.nickname}`;
 
     displayProfilePicture(user);
 
+    // Change nickname form
     const formNickname = document.querySelector("#change-nickname");
     formNickname.addEventListener("submit", (event) => {
         event.preventDefault();
@@ -29,6 +33,7 @@ export default function loadProfile(user) {
         formNickname.nickname.value = "";
     });
 
+    // Change password form
     const formPassword = document.querySelector("#change-password");
     formPassword.addEventListener("submit", (event) => {
         event.preventDefault();
@@ -46,6 +51,7 @@ export default function loadProfile(user) {
         emitChangePassword(user, formPassword.newPassword.value);
     });
 
+    // Form to add profile pictures
     const formProfilePicture = document.querySelector("#add-profile-picture");
     formProfilePicture.addEventListener("submit", (event) => {
         event.preventDefault();
@@ -53,6 +59,7 @@ export default function loadProfile(user) {
         emitAddProfilePicture(user, picture);
     });
 
+    // Button that removes the user profile picture
     document.querySelector("#remove-profile-picture").addEventListener("click", () => {
         emitRemoveProfilePicture(user);
     });

@@ -1,3 +1,5 @@
+/* Styles for the profile page */
+
 .profile__form, #add-profile-picture {
     display: flex;
     align-items: flex-start;

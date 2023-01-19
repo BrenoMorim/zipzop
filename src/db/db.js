@@ -5,6 +5,7 @@ import Database from 'better-sqlite3';
 
 const pathDb = path.join(url.fileURLToPath(import.meta.url), "../../../", "zipzop.db");
 
+// Connects to sqlite db
 const db = new Database(pathDb);
 db.pragma('journal_mode = WAL');
 db.exec(schema);

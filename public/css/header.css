@@ -1,3 +1,5 @@
+/* Styles for header and nav inside it  */
+
 .header, .header__nav {
     flex-direction: row;
     display: flex;

@@ -1,6 +1,8 @@
 import crypto from "crypto";
 
 const algorithm = 'aes-256-cbc'; //Using AES encryption
+
+// Uses environment variables to encrypt the messages, with default values if environment variables were not provided
 const key = process.env.ENCRYPTION_KEY || 'passwordpasswordpasswordpassword';
 const iv = Buffer.from(process.env.ENCRYPTION_IV || 'passwordpassword');
 

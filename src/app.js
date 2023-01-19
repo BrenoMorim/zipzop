@@ -10,10 +10,11 @@ import socketBackend from './socket-backend.js';
 import "./db/db.js";
 
 const pathPublic = path.join(url.fileURLToPath(import.meta.url), "../..", "public");
-
 const port = process.env.SERVER_PORT || '3000';
 const app = express();
 const httpServer = http.createServer(app);
+
+// Instantiate the server
 
 httpServer.listen(port, () => {
     console.log(`Server listening at ${port}`);

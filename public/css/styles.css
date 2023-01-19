@@ -1,3 +1,5 @@
+/* Encapsulates the imports of other CSS files */
+
 @import url("./form.css");
 @import url("./header.css");
 @import url("./notification.css");
@@ -5,6 +7,8 @@
 @import url("./chat.css");
 @import url("./index.css");
 @import url("./profile.css");
+
+/* Sets up CSS variables */
 
 :root {
     --white: #EEEEEE;
@@ -14,6 +18,8 @@
     --darkblue: #3B2C65;
     --red: #ba0404;
 }
+
+/* Some global styles */
 
 body {
     width: 100vw;
@@ -29,6 +35,8 @@ body {
     margin: 0;
     box-sizing: border-box;
 }
+
+/* Custom buttons */
 
 .button {
     color: var(--black);

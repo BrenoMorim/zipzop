@@ -1,8 +1,10 @@
 import { loadPage, showNotification } from "./index.js";
 import { emitLogin, emitNewChat, emitRegister } from "./socket-index.js";
 
+// Contains simpler scripts for pages
 export const scripts = {
     "login": () => {
+        // Login logic
         const form = document.querySelector(".form");
         form.addEventListener("submit", (event) => {
             event.preventDefault();
@@ -10,14 +12,17 @@ export const scripts = {
         });
     },
     "index": () => {
+        // Enables the links in not logged homepage 
         document.querySelector("#login").addEventListener("click", () => loadPage("login"));
         document.querySelector("#register").addEventListener("click", () => loadPage("register"));
     },
     "register": () => {
+        // Register logic
         const form = document.querySelector(".form");
         form.addEventListener("submit", (event) => {
             event.preventDefault();
 
+            // Form validation
             if (form.nickname.value.length < 3) {
                 showNotification("error", "Nickname should have at least three characters!");
                 return;
@@ -37,6 +42,7 @@ export const scripts = {
         });
     },
     "new-chat": () => {
+        // Creates new chat
         const form = document.querySelector(".form");
         form.addEventListener("submit", (event) => {
             event.preventDefault();

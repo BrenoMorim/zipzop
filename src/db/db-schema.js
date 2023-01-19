@@ -1,4 +1,6 @@
-export const schema = `CREATE TABLE IF NOT EXISTS people (
+// Creates the tables in database
+
+export const schema = `CREATE TABLE IF NOT EXISTS users (
     nickname TEXT NOT NULL,
     email TEXT NOT NULL UNIQUE,
     hash TEXT NOT NULL,
@@ -6,15 +8,15 @@ export const schema = `CREATE TABLE IF NOT EXISTS people (
     PRIMARY KEY (email)
 );
 
-CREATE UNIQUE INDEX IF NOT EXISTS person_id ON people(email);
+CREATE UNIQUE INDEX IF NOT EXISTS user_id ON users(email);
 
 CREATE TABLE IF NOT EXISTS chats (
     id INTEGER NOT NULL UNIQUE,
     participant1 TEXT NOT NULL,
     participant2 TEXT NOT NULL,
     last_updated DATETIME NOT NULL,
-    FOREIGN KEY (participant1) REFERENCES people (email),
-    FOREIGN KEY (participant2) REFERENCES people (email),
+    FOREIGN KEY (participant1) REFERENCES users (email),
+    FOREIGN KEY (participant2) REFERENCES users (email),
     PRIMARY KEY (id)
 );
 
@@ -27,8 +29,8 @@ CREATE TABLE IF NOT EXISTS messages (
     sender TEXT NOT NULL,
     receiver TEXT NOT NULL,
     chat_id INTEGER NOT NULL,
-    FOREIGN KEY (sender) REFERENCES people (email),
-    FOREIGN KEY (receiver) REFERENCES people (email),
+    FOREIGN KEY (sender) REFERENCES users (email),
+    FOREIGN KEY (receiver) REFERENCES users (email),
     FOREIGN KEY (chat_id) REFERENCES chats (id),
     PRIMARY KEY (id)
 );

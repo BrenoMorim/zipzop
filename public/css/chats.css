@@ -1,3 +1,5 @@
+/* Styles for homepage where the chats are displayed */
+
 .chats {
     display: flex;
     flex-direction: column;
@@ -48,7 +50,9 @@
     align-self: flex-end;
 }
 
-@media screen and (max-width: 1024px) {
+/* Doesn't show all the information on mobile due to lack of horizontal space */
+
+@media screen and (max-width: 720px) {
     .chats__chat__last-updated {
         display: none;
     }

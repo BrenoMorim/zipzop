@@ -2,6 +2,7 @@ import { displayProfilePicture, formatDate, loadPage } from "./index.js";
 import { pages } from "./pages.js";
 import { emitLoadChat } from "./socket-index.js";
 
+// Loads the homepage if logged
 export default function loadHomepage(user, chats) {
 
     document.querySelector("main").innerHTML = pages["homepage"];
@@ -20,10 +21,12 @@ export default function loadHomepage(user, chats) {
         document.querySelector("#no-chats-yet").classList.remove("hidden");
     }
 
+    // Shows the chats of the user
     chats.forEach((chat) => {
         const li = document.createElement("li");
         li.className = "chats__chat";
 
+        // Sets the profile picture of the other participant
         const img = document.createElement('img');
         img.src = "/assets/default-profile-picture.svg";
         img.width = 48;
@@ -32,11 +35,13 @@ export default function loadHomepage(user, chats) {
         li.appendChild(img);
         displayProfilePicture(chat.otherUser, li);
 
+        // Show the other participant email
         const spanEmail = document.createElement('span');
         spanEmail.className = "chats__chat__email";
         spanEmail.textContent = user.email == chat.participant1 ? chat.participant2 : chat.participant1;
         li.appendChild(spanEmail);
 
+        // Shows info about the last message of the chat
         if (chat.lastMessage !== undefined) {
 
             const spanLastMessage = document.createElement('span');
@@ -57,12 +62,14 @@ export default function loadHomepage(user, chats) {
 
     const queryChat = document.querySelector("#query-chat");
 
+    // Query chat is disabled if there are no chats
     if (!document.querySelector("#no-chats-yet").classList.contains("hidden")) {
         queryChat.classList.add("hidden");
     } else {
         queryChat.classList.remove("hidden");
     }
 
+    // Hides the chats that don't match the query
     queryChat.addEventListener("keyup", (event) => {
         let count = 0;
         document.querySelectorAll(".chats__chat").forEach(chat => {

@@ -5,6 +5,7 @@ import loadChatPage from "./chatpage.js";
 import loadHomepage from "./homepage.js";
 import loadProfile from "./profile.js";
 
+// Contains all the communication with the back-end
 const socket = io();
 
 socket.on("loadpage", (page) => {
@@ -37,8 +38,10 @@ socket.on("load-profile", (user) => {
 
 socket.on("receive-message", (user, content) => {
     if (document.querySelector("h1").textContent == `Chat with ${user.nickname}`) {
+        // If the user is in the chatpage, insert new message to the chatpage
         updateChat(user, content);
     } else {
+        // Else show notification that a message was delivered to the user
         showNotification("success", `${user.nickname} has sent you a message`);
     }
 });

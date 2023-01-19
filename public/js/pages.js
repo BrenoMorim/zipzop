@@ -1,3 +1,5 @@
+// Contains all the HTML pages, which will be injected with JS in the main tag
+
 export const pages = {
     "register": `
         <h1>Register</h1>
