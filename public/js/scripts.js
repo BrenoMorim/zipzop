@@ -1,5 +1,5 @@
 import { loadPage, showNotification } from "./index.js";
-import { emitLogin, emitNewChat, emitRegister } from "./socket-index.js";
+import { emitLogin, emitNewChat, emitRegister } from "./socket-frontend.js";
 
 // Contains simpler scripts for pages
 export const scripts = {

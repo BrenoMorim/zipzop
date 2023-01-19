@@ -1,6 +1,6 @@
 import { pages } from "./pages.js";
 import { scripts } from "./scripts.js";
-import "./socket-index.js";
+import "./socket-frontend.js";
 
 // Loads simpler pages
 export function loadPage(page) {

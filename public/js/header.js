@@ -1,5 +1,5 @@
 import { loadPage } from "./index.js";
-import { emitLoadHomepage, emitLogout, emitLoadProfile } from "./socket-index.js";
+import { emitLoadHomepage, emitLogout, emitLoadProfile } from "./socket-frontend.js";
 
 export default function loadHeader(user = {}) {
 

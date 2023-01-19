@@ -1,6 +1,6 @@
 import { displayProfilePicture, formatDate, loadPage } from "./index.js";
 import { pages } from "./pages.js";
-import { emitLoadChat } from "./socket-index.js";
+import { emitLoadChat } from "./socket-frontend.js";
 
 // Loads the homepage if logged
 export default function loadHomepage(user, chats) {

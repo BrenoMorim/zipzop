@@ -1,6 +1,6 @@
 import { displayProfilePicture, showNotification } from "./index.js";
 import { pages } from "./pages.js";
-import { emitAddProfilePicture, emitChangeNickname, emitChangePassword, emitRemoveProfilePicture } from "./socket-index.js";
+import { emitAddProfilePicture, emitChangeNickname, emitChangePassword, emitRemoveProfilePicture } from "./socket-frontend.js";
 
 // Loads the profile page
 export default function loadProfile(user) {

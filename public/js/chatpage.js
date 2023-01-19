@@ -1,6 +1,6 @@
 import { displayProfilePicture, insertMessage } from "./index.js";
 import { pages } from "./pages.js";
-import { emitLoadChat, emitSendMessage } from "./socket-index.js";
+import { emitLoadChat, emitSendMessage } from "./socket-frontend.js";
 
 // Generates the chat page dynamically
 export default function loadChatPage(user, chat, messages, otherUser, total) {

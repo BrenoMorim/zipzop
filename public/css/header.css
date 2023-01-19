@@ -19,7 +19,7 @@
 }
 
 @media screen and (max-width: 720px) {
-    .header {
+    .header, .header__nav {
         justify-content: center;
     }
 }
@@ -31,6 +31,8 @@
 
 .header__text {
     margin: 0;
+    font-weight: bold;
+    font-size: 1.25rem;
 }
 
 .header__logo {
