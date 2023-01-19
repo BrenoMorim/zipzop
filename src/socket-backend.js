@@ -75,8 +75,7 @@ export default function socketBackend(io) {
                 createNewChat(thisEmail, email);
                 socket.emit("notification", {kind: "success", content: `New chat with ${email} was created`});
                 const user = getUserDto(thisEmail);
-                const chats = getChatsByUser(thisEmail);
-                socket.emit("load-homepage", {user, chats});
+                socket.emit("request-load-homepage", {user});
             }
         });
 
@@ -99,6 +98,10 @@ export default function socketBackend(io) {
             sendMessage(sender, receiver, content);
             const user = getUserDto(sender);
             socket.to(receiver).emit("receive-message", user, content);
+        });
+
+        socket.on("load-profile-with-data", (email) => {
+            socket.emit("load-profile", getUserDto(email));
         });
 
         socket.on("change-nickname", (user, newNickname) => {

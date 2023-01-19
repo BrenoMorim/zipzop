@@ -11,9 +11,13 @@ export default function loadHomepage(user, chats) {
     displayProfilePicture(user);
 
     const list = document.querySelector(".chats");
-    
-    if (chats.length == 0) {
-        list.innerHTML = '<li class="chats--empty">No chats yet</li>';
+    document.querySelector("#no-chats-found").classList.add("hidden");
+
+    // Error message if there are no chats
+    if (chats.length > 0) {
+        document.querySelector("#no-chats-yet").classList.add("hidden");
+    } else {
+        document.querySelector("#no-chats-yet").classList.remove("hidden");
     }
 
     chats.forEach((chat) => {
@@ -51,4 +55,31 @@ export default function loadHomepage(user, chats) {
         list.appendChild(li);
     });
 
+    const queryChat = document.querySelector("#query-chat");
+
+    if (!document.querySelector("#no-chats-yet").classList.contains("hidden")) {
+        queryChat.classList.add("hidden");
+    } else {
+        queryChat.classList.remove("hidden");
+    }
+
+    queryChat.addEventListener("keyup", (event) => {
+        let count = 0;
+        document.querySelectorAll(".chats__chat").forEach(chat => {
+            console.log(chat);
+            if (chat.querySelector(".chats__chat__email").textContent.includes(event.target.value)) {
+                chat.classList.remove("hidden");
+                count += 1;
+            } else {
+                chat.classList.add("hidden");
+            }
+        });
+
+        // Error message if any chats match the query
+        if (queryChat.value !== '' && count === 0) {
+            document.querySelector("#no-chats-found").classList.remove("hidden");
+        } else {
+            document.querySelector("#no-chats-found").classList.add("hidden");
+        }
+    });
 }

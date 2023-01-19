@@ -3,7 +3,7 @@
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    row-gap: 1rem;
+    gap: 1rem;
 }
 
 .header {
@@ -16,10 +16,15 @@
     z-index: 5;
 }
 
+@media screen and (max-width: 720px) {
+    .header {
+        justify-content: center;
+    }
+}
+
 .header__nav {
     justify-content: flex-end;
     align-items: center;
-    column-gap: 3vh;
 }
 
 .header__text {
@@ -28,5 +33,5 @@
 
 .header__logo {
     max-height: 7rem;
-    max-width: 40vw;
+    max-width: 50vw;
 }

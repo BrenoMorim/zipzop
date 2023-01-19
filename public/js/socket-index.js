@@ -59,6 +59,10 @@ export function emitLoadHomepage(email) {
     socket.emit("load-homepage-with-data", email);
 }
 
+export function emitLoadProfile(email) {
+    socket.emit("load-profile-with-data", email);
+}
+
 export function emitLoadChat(user, chat, size) {
     socket.emit("load-chat", user, chat, size);
 }

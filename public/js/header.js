@@ -1,6 +1,5 @@
 import { loadPage } from "./index.js";
-import loadProfile from "./profile.js";
-import { emitLoadHomepage, emitLogout } from "./socket-index.js";
+import { emitLoadHomepage, emitLogout, emitLoadProfile } from "./socket-index.js";
 
 export default function loadHeader(user = {}) {
 
@@ -17,7 +16,7 @@ export default function loadHeader(user = {}) {
             </nav>
         `;
         document.querySelector("#nav-chats").addEventListener("click", () => emitLoadHomepage(user.email));
-        document.querySelector("#nav-profile").addEventListener("click", () => loadProfile(user));
+        document.querySelector("#nav-profile").addEventListener("click", () => emitLoadProfile(user.email));
         document.querySelector("#nav-logout").addEventListener("click", () => emitLogout(user.email));
 
     } else {

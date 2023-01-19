@@ -38,6 +38,7 @@ body {
     border: none;
     transition: all 500ms;
     font-weight: 500;
+    cursor: pointer;
 }
 
 .button:hover {
@@ -61,4 +62,9 @@ body {
 
 .user__profile-picture {
     border-radius: 50%;
+}
+
+.hidden {
+    display: none;
+    visibility: hidden;
 }
