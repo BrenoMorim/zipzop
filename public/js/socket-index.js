@@ -78,3 +78,11 @@ export function emitChangeNickname(user, newNickname) {
 export function emitChangePassword(user, newPassword) {
     socket.emit("change-password", user, newPassword);
 }
+
+export function emitAddProfilePicture(user, picture) {
+    socket.emit("add-profile-picture", user, picture);
+}
+
+export function emitRemoveProfilePicture(user) {
+    socket.emit("remove-profile-picture", user);
+}

@@ -45,3 +45,15 @@ export function updateUserPassword(email, newPassword) {
         return {kind: 'success', content: 'Changed password successfully!'};
     }
 }
+
+export function addProfilePicture(email, picture) {
+    db.prepare("UPDATE people SET profile_picture = ? WHERE email = ?;").run(picture, email);
+}
+
+export function removeProfilePicture(email) {
+    if (getUser(email).profile_picture == null) {
+        return {kind: 'error', content: "You don't have a profile picture!"};
+    }
+    db.prepare("UPDATE people SET profile_picture = null WHERE email = ?;").run(email);
+    return {kind: 'success', content: "Profile picture was removed!"}
+}

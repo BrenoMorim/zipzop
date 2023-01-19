@@ -58,3 +58,7 @@ body {
     color: var(--darkblue);
     background-color: var(--white);
 }
+
+.user__profile-picture {
+    border-radius: 50%;
+}

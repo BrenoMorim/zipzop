@@ -58,3 +58,10 @@ export function updateChat(user, content) {
         insertMessage(content, new Date().toISOString(), "received", user.nickname);
     }
 }
+
+export function displayProfilePicture(user, root=document) {
+    if (user.profile_picture !== null) {
+            root.querySelector(".user__profile-picture")
+                .setAttribute("src", `data:image/png;base64, ${user.profile_picture}`);
+    }
+}

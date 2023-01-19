@@ -1,6 +1,5 @@
 import { countMessages, createNewChat, getChatByParticipants, getChatsByUser, getMessages, sendMessage } from "./service/chats.js";
-import { encrypt } from "./service/encryptionService.js";
-import { createUser, getUserDto, updateUserNickname, updateUserPassword, verifyLogin } from "./service/user.js";
+import { addProfilePicture, createUser, getUserDto, removeProfilePicture, updateUserNickname, updateUserPassword, verifyLogin } from "./service/user.js";
 
 export default function socketBackend(io) {
     
@@ -34,7 +33,11 @@ export default function socketBackend(io) {
                         content: lastMessage.at(0).content,
                         sender: getUserDto(lastMessage.at(0).sender).nickname,
                         date: lastMessage.at(0).date
-                    };                }
+                    };
+                }
+
+                const otherUserEmail = chat.participant1 === email ? chat.participant2 : chat.participant1;
+                chat.otherUser = getUserDto(otherUserEmail);
             });
             socket.emit("load-homepage", {user, chats});
         })
@@ -108,6 +111,22 @@ export default function socketBackend(io) {
             const message = updateUserPassword(user.email, newPassword);
             socket.emit("notification", message);
             socket.emit("load-profile", user);
+        });
+
+        socket.on("add-profile-picture", (user, picture) => {
+            if (picture === null) {
+                socket.emit("notification", {kind: "error", content: "No picture was provided!"});    
+            } else {
+                addProfilePicture(user.email, picture);
+                socket.emit("notification", {kind: "success", content: "Profile picture added!"});
+                socket.emit("load-profile", getUserDto(user.email));
+            }
+        });
+
+        socket.on("remove-profile-picture", (user) => {
+            const message = removeProfilePicture(user.email);
+            socket.emit("notification", message);
+            socket.emit("load-profile", getUserDto(user.email));
         });
     });
 }

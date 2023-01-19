@@ -1,4 +1,4 @@
-import { formatDate, loadPage } from "./index.js";
+import { displayProfilePicture, formatDate, loadPage } from "./index.js";
 import { pages } from "./pages.js";
 import { emitLoadChat } from "./socket-index.js";
 
@@ -7,6 +7,8 @@ export default function loadHomepage(user, chats) {
     document.querySelector("main").innerHTML = pages["homepage"];
     document.querySelector("#greet-user").textContent = `Welcome back, ${user.nickname}!`;
     document.querySelector("#start-chat").addEventListener("click", () => loadPage("new-chat"));
+
+    displayProfilePicture(user);
 
     const list = document.querySelector(".chats");
     
@@ -17,6 +19,14 @@ export default function loadHomepage(user, chats) {
     chats.forEach((chat) => {
         const li = document.createElement("li");
         li.className = "chats__chat";
+
+        const img = document.createElement('img');
+        img.src = "/assets/default-profile-picture.svg";
+        img.width = 48;
+        img.height = 48;
+        img.className = "user__profile-picture";
+        li.appendChild(img);
+        displayProfilePicture(chat.otherUser, li);
 
         const spanEmail = document.createElement('span');
         spanEmail.className = "chats__chat__email";

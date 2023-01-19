@@ -1,10 +1,12 @@
-import { insertMessage } from "./index.js";
+import { displayProfilePicture, insertMessage } from "./index.js";
 import { pages } from "./pages.js";
 import { emitLoadChat, emitSendMessage } from "./socket-index.js";
 
 export default function loadChatPage(user, chat, messages, otherUser, total) {
     document.querySelector("main").innerHTML = pages["chat"];
     document.querySelector(".chat__title").textContent = `Chat with ${otherUser.nickname}`;
+
+    displayProfilePicture(otherUser);
 
     if (messages.length < total) {
         document.querySelector(".chat__load-more").style.display = "flex";

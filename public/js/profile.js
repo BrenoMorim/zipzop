@@ -1,6 +1,6 @@
-import { showNotification } from "./index.js";
+import { displayProfilePicture, showNotification } from "./index.js";
 import { pages } from "./pages.js";
-import { emitChangeNickname, emitChangePassword } from "./socket-index.js";
+import { emitAddProfilePicture, emitChangeNickname, emitChangePassword, emitRemoveProfilePicture } from "./socket-index.js";
 
 export default function loadProfile(user) {
 
@@ -8,6 +8,8 @@ export default function loadProfile(user) {
     document.querySelector(".profile__title").textContent = `${user.nickname}'s profile`;
     document.querySelector(".profile__email").textContent = `Email: ${user.email}`;
     document.querySelector("#current-nickname").textContent = `Current nickname: ${user.nickname}`;
+
+    displayProfilePicture(user);
 
     const formNickname = document.querySelector("#change-nickname");
     formNickname.addEventListener("submit", (event) => {
@@ -42,5 +44,16 @@ export default function loadProfile(user) {
         }
 
         emitChangePassword(user, formPassword.newPassword.value);
+    });
+
+    const formProfilePicture = document.querySelector("#add-profile-picture");
+    formProfilePicture.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const picture = document.querySelector("#profile-picture").files[0];
+        emitAddProfilePicture(user, picture);
+    });
+
+    document.querySelector("#remove-profile-picture").addEventListener("click", () => {
+        emitRemoveProfilePicture(user);
     });
 }

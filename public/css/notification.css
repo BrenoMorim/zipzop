@@ -1,21 +1,21 @@
 .notification {
-    z-index: 3;
-    bottom: 50vh;
-    position: sticky;
-    left: 70vw;
+    z-index: 6;
+    top: 20vh;
+    position: fixed;
+    right: 2rem;
     max-width: 50vw;
     width: fit-content;
-    border-radius: 1.5rem;
+    border-radius: 1rem;
     padding: 1.5rem;
-    opacity: 0.8;
+    opacity: 0.9;
     text-align: center;
 }
 
 .notification__message {
-    font-size: 1.25rem;
+    font-size: 1.125rem;
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 1024px) {
     .notification__message {
         font-size: 0.9;
     }

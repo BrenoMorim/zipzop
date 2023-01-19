@@ -41,6 +41,7 @@ export const pages = {
         </div>
     `,
     "homepage": `
+        <img src="/assets/default-profile-picture.svg" class="user__profile-picture" height="128" width="128"/>
         <h1 id="greet-user"></h1>
         <h2>Your chats</h2>
         <button id="start-chat" class="button button--alternative">Start new chat</button>
@@ -59,6 +60,7 @@ export const pages = {
         </form>
     `,
     "chat": `
+        <img src="/assets/default-profile-picture.svg" class="user__profile-picture" height="128" width="128"/>
         <h1 class="chat__title"></h1>
         <div class="chat__load-more"><button class="button" id="load-more">Load more</button></div>
         <ul class="chat">
@@ -70,16 +72,18 @@ export const pages = {
         </form>
     `,
     "profile": `
+        <img src="/assets/default-profile-picture.svg" class="user__profile-picture" height="128" width="128"/>
         <h1 class="profile__title"></h1>
         <h2 class="profile__email"></h2>
-            <form id="add-profile-picture" class="profile__form">
+        <form id="add-profile-picture" class="profile__form">
             <h3 class="profile__text">Add new profile picture</h3>
             <input type="file"
                 class="button button--alternative"
-                name="profile-picture"
+                name="profilePicture"
                 id="profile-picture"
                 accept="image/png, image/jpeg">
             <button type="submit" class="button button--alternative">Send picture</button>
+            <button class="button" type="button" id="remove-profile-picture">Remove profile picture</button>
         </form>
         <form class="profile__form" id="change-nickname">
             <h3 class="profile__text" id="current-nickname"></h3>
