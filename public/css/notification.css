@@ -33,7 +33,7 @@
 }
 
 .notification--success {
-    background-color: var(--lightblue);
-    color: var(--black);
-    border: 2px solid var(--black);
+    background-color: var(--green);
+    color: var(--white);
+    border: 2px solid var(--white);
 }

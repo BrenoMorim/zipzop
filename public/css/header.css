@@ -18,15 +18,15 @@
     z-index: 5;
 }
 
+.header__nav {
+    justify-content: flex-end;
+    align-items: center;
+}
+
 @media screen and (max-width: 720px) {
     .header, .header__nav {
         justify-content: center;
     }
-}
-
-.header__nav {
-    justify-content: flex-end;
-    align-items: center;
 }
 
 .header__text {

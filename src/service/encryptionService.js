@@ -3,8 +3,8 @@ import crypto from "crypto";
 const algorithm = 'aes-256-cbc'; //Using AES encryption
 
 // Uses environment variables to encrypt the messages, with default values if environment variables were not provided
-const key = process.env.ENCRYPTION_KEY || 'passwordpasswordpasswordpassword';
-const iv = Buffer.from(process.env.ENCRYPTION_IV || 'passwordpassword');
+const key = process.env.ENCRYPTION_KEY || 'passwordpasswordpasswordpassword'; // Must be 32 bytes long
+const iv = Buffer.from(process.env.ENCRYPTION_IV || 'passwordpassword'); // Must be 16 bytes long
 
 // Encrypting message
 export function encrypt(message) {
