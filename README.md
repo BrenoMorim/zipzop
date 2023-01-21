@@ -6,7 +6,7 @@ Meu projeto final para o curso CS50, curso de introdução à Ciência da Comput
 
 | :placard: Vitrine.Dev |     |
 | -------------  | --- |
-| :sparkles: Nome        | ** ZipZop **
+| :sparkles: Nome        | **ZipZop**
 | :label: Tecnologias | JavaScript, WebSockets, Socket.io, HTML, CSS
 
 ![alt="Chat page of the project"](https://github.com/BrenoMorim/zipzop/blob/main/project-images/project.png?raw=true#vitrine-dev)
