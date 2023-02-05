@@ -1,6 +1,6 @@
-import db from "../db/db.js";
-import { hashPassword, verifyHash } from "./authenticationService.js";
-import userDto from "./userDto.js";
+import db from "./db.js";
+import { hashPassword, verifyHash } from "../service/authenticationService.js";
+import userDto from "../service/userDto.js";
 
 // Creates a new user
 export function createUser(nickname, email, password) {

@@ -1,5 +1,5 @@
-import db from "../db/db.js";
-import { decrypt, encrypt } from "./encryptionService.js";
+import db from "./db.js";
+import { decrypt, encrypt } from "../service/encryptionService.js";
 
 // Gets all chats with the participation of the user
 export function getChatsByUser(email) {

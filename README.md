@@ -110,14 +110,19 @@ My CS50 final project: ZipZop is a messaging app inspired by WhatsApp, here in B
   - db: Contains database related files.
     - db-schema.js: Exports a string with the commands to create the tables: users, chats and messages; and the indexes as well, to make queries more performatic.
     - db.js: Connects to the database and exports it.
+    - user.js: Operations related to the users table.
+    - chats.js: Operations related to the messages and chats tables.
   - service: Includes helper functions related to security and database manipulation.
     - authenticationService.js: Uses BCrypt to hash passwords and verify them to login. The key and Initialization Vector must be provided by environment variables.
-    - chats.js: Operations related to the messages and chats tables.
     - encryptionService.js: Uses Crypto to encrypt and decrypt messages.
-    - user.js: Operations related to the users table.
     - userDto.js: Sanitizes the user data, avoiding the leakage of sensible data, such as the hashed password. Guarantees only the necessary information of the user is returned to the front-end.
   - app.js: Instantiates the server, loads both the db.js and socket-backend.js files. The port used by the server can be configured with environment variables.
-  - socket-backend.js: Emits and listens to all the events that come from the front-end. Calls functions from db and service to make all the application work.
+  - registerEvents: Includes all mits and listens to all the events that come from the front-end. Calls functions from db and service to make all the application workthe events that can be transmitted to the front-end
+    - auth.js: Authentication related events (login, register, logout)
+    - home.js: Loads the homepage with all data
+    - chat.js: Chat related events (loading, creating, sending messages)
+    - profile.js: Events related to the user profile (profile picture, password and nickname changes)
+  - socket-backend.js: Encapsulates the registration of the events.
 
 ---
 
