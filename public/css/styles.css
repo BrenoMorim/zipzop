@@ -35,6 +35,7 @@ body {
     flex-direction: column;
     margin: 0;
     box-sizing: border-box;
+    min-height: 100%;
 }
 
 /* Custom buttons */
@@ -77,3 +78,27 @@ body {
     display: none;
     visibility: hidden;
 }
+
+.loader-container {
+    position: fixed;
+    top: 35vh;
+    left: calc(50vw - 60px);
+    z-index: 10;
+    display: flex;
+    gap: 2rem;
+    flex-direction: column;
+}
+
+.loader {
+    border: 16px solid var(--lightblue); /* Light blue */
+    border-top: 16px solid var(--blue); /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }

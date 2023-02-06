@@ -1,16 +1,12 @@
 import { countMessages, createNewChat, getChatByParticipants, getMessages, sendMessage } from "../db/chats.js";
 import { getUserDto } from "../db/user.js";
+import { verifyToken } from '../service/JWTService.js';
 
 // Chat related events
 export default function registerEventChat(socket, io) {
-    socket.on("new-chat", (email) => {
+    socket.on("new_chat", (email) => {
         // Gets the email of the current user
-        let thisEmail;
-        socket.rooms.forEach(room => {
-            if (room.includes("@")) {
-                thisEmail = room;
-            }
-        });
+        const thisEmail = verifyToken(socket.handshake.auth.token).email;
 
         // Validates the request
         if (thisEmail === email) {
@@ -25,24 +21,37 @@ export default function registerEventChat(socket, io) {
             // If no errors, creates new chat and redirects to homepage
             createNewChat(thisEmail, email);
             socket.emit("notification", {kind: "success", content: `New chat with ${email} was created`});
-            const user = getUserDto(thisEmail);
-            socket.emit("request-load-homepage", {user});
+            socket.emit("new_chat_success");
         }
     });
 
-    socket.on("load-chat", (user, chat, size) => {
+    socket.on("load_header", () => {
+        const email = verifyToken(socket.handshake.auth.token).email;
+        socket.join(email);
+        const user = getUserDto(email);
+        socket.emit("header_loaded", user);
+    })
+
+    socket.on("load_chat", (token, otherEmail, size) => {
         // Loads the messages of a chat and redirects to chatpage
-        const messages = getMessages(chat.id, size);
-        const total = countMessages(chat.id);
-        const otherEmail = user.email == chat.participant1 ? chat.participant2 : chat.participant1;
-        const otherUser = getUserDto(otherEmail);
-        socket.emit("load-chat-page", {user, chat, messages, otherUser, total});
+        try {
+            const email = verifyToken(token).email;
+            socket.join(email);
+            const user = getUserDto(email);
+            const chat = getChatByParticipants(email, otherEmail);
+            const messages = getMessages(chat.id, size);
+            const total = countMessages(chat.id);
+            const otherUser = getUserDto(otherEmail);
+            socket.emit("chat_loaded", {user, chat, messages, otherUser, total});
+        } catch(error) {
+            socket.emit("chat_error");
+        }
     });
 
-    socket.on("send-message", (sender, receiver, content) => {
+    socket.on("send_message", (sender, receiver, content) => {
         // Sends message to user
         sendMessage(sender, receiver, content);
         const user = getUserDto(sender);
-        socket.to(receiver).emit("receive-message", user, content);
+        socket.to(receiver).emit("receive_message", user, content);
     });
 }

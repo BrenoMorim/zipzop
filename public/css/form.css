@@ -8,6 +8,10 @@
     flex-direction: column;
 }
 
+.form div {
+    width: 100%;
+}
+
 .form__submit {
     align-self: center;
 }

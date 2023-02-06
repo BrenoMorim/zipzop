@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>ZipZop</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='../css/styles.css'>
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+    <!-- Dynamically generated header -->
+    <header class="header"></header>
+
+    <main class="container">
+        <img src="/assets/default-profile-picture.svg" class="user__profile-picture" height="128" width="128"/>
+        <h1 class="profile__title"></h1>
+        <h2 class="profile__email"></h2>
+        <form id="add-profile-picture" class="profile__form">
+            <h3 class="profile__text">Add new profile picture</h3>
+            <input type="file"
+                class="button button--alternative"
+                name="profilePicture"
+                id="profile-picture"
+                accept="image/png, image/jpeg">
+            <button type="submit" class="button button--alternative">Send picture</button>
+            <button class="button" type="button" id="remove-profile-picture">Remove profile picture</button>
+        </form>
+        <form class="profile__form" id="change-nickname">
+            <h3 class="profile__text" id="current-nickname"></h3>
+            <div class="profile__input">
+                <input class="form-control" name="nickname" type="text" placeholder="New nickname" autocomplete="off" />
+            </div>
+            <button class="button button--alternative" id="change-nickname-button" type="submit">Change Nickname</button>
+        </form>
+        <form class="profile__form" id="change-password">
+            <h3 class="profile__text">Change password</h3>
+            <div class="profile__input">
+                <input class="form-control" name="newPassword" placeholder="New password" type="password" autocomplete="off" />
+                <input class="form-control mt-3" name="confirmNewPassword" placeholder="Confirm new password" type="password" autocomplete="off" />
+            </div>
+            <button class="button button--alternative" type="submit">Change Password</button>
+        </form>
+    </main>
+
+    <!-- Shows notifications -->
+    <div class="notification"><span class="notification__message"></span></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+    crossorigin="anonymous"></script>
+
+    <!-- Makes the socket.io object available in the scripts -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="./profile.js" type="module"></script>
+</body>
+</html>

@@ -1,10 +1,13 @@
 import { getChatsByUser, getMessages } from "../db/chats.js";
 import { getUserDto } from "../db/user.js";
+import { verifyToken } from "../service/JWTService.js";
 
 // Events related to the homepage
 export default function registerEventHome(socket, io) {
-    socket.on("load-homepage-with-data", (email) => {
+    socket.on("load_chats", (token) => {
         // Gets the chats of the user to display in the homepage
+        const email = verifyToken(token).email;
+        socket.join(email);
         const user = getUserDto(email);
         const chats = getChatsByUser(email);
         chats.forEach(chat => {
@@ -23,6 +26,6 @@ export default function registerEventHome(socket, io) {
             const otherUserEmail = chat.participant1 === email ? chat.participant2 : chat.participant1;
             chat.otherUser = getUserDto(otherUserEmail);
         });
-        socket.emit("load-homepage", {user, chats});
+        socket.emit("chats_loaded", {user, chats});
     });
 }
