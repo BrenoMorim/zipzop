@@ -9,7 +9,7 @@ export default function registerEventAuth(socket, io) {
         if (errorMessage) {
             socket.emit("register_error", {kind: "error", content: errorMessage});
         } else {
-            // If the user was created, automatically login and redirect to homepage
+            // If the user was created, automatically login, sending the jwt token
             socket.join(email);
             const user = getUserDto(email);
             const token = createJwtToken({email: user.email});
@@ -20,7 +20,7 @@ export default function registerEventAuth(socket, io) {
     socket.on("login", (email, password) => {
         const success = verifyLogin(email, password);
         if (success) {
-            // If login was done, redirects to logged homepage
+            // If login was done, emit success event
             const user = getUserDto(email);
             socket.join(email);
             const token = createJwtToken({email: user.email});

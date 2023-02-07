@@ -4,7 +4,6 @@ export default function authenticateUser(socket, next) {
 
     const tokenJWT = socket.handshake.auth.token;
     try {
-        console.log(tokenJWT);
         const payload = verifyToken(tokenJWT);
         socket.emit("authentication_sucess", payload);
         next();

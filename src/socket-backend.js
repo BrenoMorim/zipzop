@@ -8,21 +8,20 @@ import registerEventProfile from "./registerEvents/profile.js";
 export default function socketBackend(io) {
 
     const nspUsers = io.of("/users");
+    // Using the authentication middleware
     nspUsers.use((socket, next) => authenticateUser(socket, next));
 
     nspUsers.on("connection", (socket) => {
+
+        // Loads events restricted to logged users
         registerEventHome(socket, io);
         registerEventChat(socket, io);
         registerEventProfile(socket, io);
     });
 
     io.on("connection", (socket) => {
-        
-        // Loads the homepage as the user is not logged yet
-        //socket.emit("loadpage", "index");
-        //socket.emit("loadheader");
 
-        // Loads all the registered events
+        // Loads all the auth events, available to all users
         registerEventAuth(socket, io);
     });
 }

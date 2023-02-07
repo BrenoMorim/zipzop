@@ -7,7 +7,7 @@ export default function registerEventChat(socket, io) {
     socket.on("new_chat", (email) => {
         // Gets the email of the current user
         const thisEmail = verifyToken(socket.handshake.auth.token).email;
-
+        const thisUser = getUserDto(thisEmail);
         // Validates the request
         if (thisEmail === email) {
             socket.emit("notification", {kind: "error", content: "Can't start a chat with yourself"});
@@ -18,8 +18,10 @@ export default function registerEventChat(socket, io) {
         else if (getChatByParticipants(thisEmail, email) !== undefined) {
             socket.emit("notification", {kind: "error", content: "There's already a chat between you two"});
         } else {
-            // If no errors, creates new chat and redirects to homepage
+            // If no errors, creates new chat
             createNewChat(thisEmail, email);
+            socket.to(email).emit("chat_started");
+            socket.to(email).emit("notification", {kind: "success", content: `${thisUser.nickname} has started a chat with you!`});
             socket.emit("notification", {kind: "success", content: `New chat with ${email} was created`});
             socket.emit("new_chat_success");
         }
@@ -33,7 +35,7 @@ export default function registerEventChat(socket, io) {
     })
 
     socket.on("load_chat", (token, otherEmail, size) => {
-        // Loads the messages of a chat and redirects to chatpage
+        // Loads the messages of a chat
         try {
             const email = verifyToken(token).email;
             socket.join(email);

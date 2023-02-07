@@ -28,4 +28,9 @@ socket.on("notification", (notification) => {
 
 socket.on("receive_message", (user, content) => {
   receiveMessage(user, content);
+  socket.emit("load_chats", getCookie("token_jwt"));
+});
+
+socket.on("chat_started", () => {
+  socket.emit("load_chats", getCookie("token_jwt"));
 });

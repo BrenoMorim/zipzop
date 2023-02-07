@@ -7,7 +7,7 @@ export default function registerEventProfile(socket, io) {
     socket.on("load_profile", () => {
         const email = verifyToken(socket.handshake.auth.token).email;
         socket.join(email);
-        // Redirects to load-profile event, where all the data will be loaded
+        // Redirects to the profile page, where all the data will be displayed
         socket.emit("profile_loaded", getUserDto(email));
     });
 
